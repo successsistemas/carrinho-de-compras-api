@@ -6,18 +6,17 @@ import { UsersDto } from './Users';
 
 @Injectable()
 export class UsersService {
-  
+
   private readonly usersDto = [
     {
-      userId: 1,
       email: 'marcelo',
       senha: '123',
     },
     {
-      userId: 2,
-      email: 'maria',
-      senha: 'guess',
+      email: 'teste',
+      senha: 'teste',
     },
+
   ];
 
   async findOne(email: string): Promise<UsersDto | undefined> {
