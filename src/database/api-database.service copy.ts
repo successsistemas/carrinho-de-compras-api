@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import knexfn, { Knex } from 'knex';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DatabaseService {

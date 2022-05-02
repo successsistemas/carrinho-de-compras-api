@@ -24,7 +24,6 @@ export class ApiDatabaseService {
 		}
 		const database = configService.get('database.name');
 
-
 		if (!database) {
 			throw new Error('VARIÁVEL DE AMBIENTE DATABASE_NAME NÃO FOI CONFIGURADA')
 		}

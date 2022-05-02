@@ -10,4 +10,5 @@ import { CriptoService } from './cripto.service'
   exports: [ConfigService],
 
 })
+
 export class CriptoModule {}

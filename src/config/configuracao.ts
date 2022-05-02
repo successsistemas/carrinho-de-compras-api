@@ -1,14 +1,14 @@
 export default () => ({
 	chaveCripto: process.env.CHAVE_CRIPTO,
 	databaseTeste: {
-		host: process.env.DATABASE_HOST_TESTE ,
+		host: process.env.DATABASE_HOST_TESTE,
 		port: parseInt(process.env.DATABASE_PORT_TESTE ?? '3306', 10),
-		user: process.env.DATABASE_USER_TESTE ,
-		password: process.env.DATABASE_PASSWORD_TESTE ,
-		name: process.env.DATABASE_NAME_TESTE ,
+		user: process.env.DATABASE_USER_TESTE,
+		password: process.env.DATABASE_PASSWORD_TESTE,
+		name: process.env.DATABASE_NAME_TESTE,
 	},
 	database: {
-		host: process.env.DATABASE_HOST ,
+		host: process.env.DATABASE_HOST,
 		port: parseInt(process.env.DATABASE_PORT??  '3306', 10),
 		user: process.env.DATABASE_USER,
 		password: process.env.DATABASE_PASSWORD,

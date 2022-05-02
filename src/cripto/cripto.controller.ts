@@ -7,7 +7,7 @@ import { CriptoService } from './cripto.service'
 @ApiTags('cripto')
 @Controller('cripto')
 export class CriptoController {
-  constructor(private readonly cripto: CriptoService) { }
+  constructor(private readonly cripto: CriptoService) {}
 
   @Post('decrypt')
   async decriptarUm(@Body() body: criptoUmDto) {
@@ -15,6 +15,7 @@ export class CriptoController {
     const decoded = await this.cripto.publicDecript(cifra, chave)
     return decoded
   }
+  
   @Post('encrypt')
   async encriptarUm(@Body() body: criptoUmDto) {
     const { cifra, chave } = body
