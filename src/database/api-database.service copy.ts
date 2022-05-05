@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import knexfn, { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 
@@ -9,11 +10,12 @@ export class DatabaseService {
 		this.knex = knexfn({
 			client: 'mysql2',
 			connection: {
-				host: "localhost",
-				port: 123,
-				user: "usuario",
-				password: "gemmanjdj",
-				database: "sdsd"
+				host: process.env.DB_HOST,
+				port: 3306,
+				user: process.env.DB_USER,
+				password:  process.env.DB_PASS,
+				database:  process.env.DB_DATABASE
+				
 			}
 		})
 	}

@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Request, Post, UseGuards } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
+import { CadastroDto, UsersDto } from './users/Users';
 
 @Controller()
 export class AppController {
@@ -19,4 +20,10 @@ export class AppController {
   getProfile(@Request() req) {
     return req.user;
   }
+  @Post('auth/cadastro')
+  adicionar(@Body() body: CadastroDto) {
+      this.authService.cadastrar(body);
+      return body.data
+  }
+
 }
