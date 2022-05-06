@@ -2,7 +2,7 @@ import { Injectable, Query } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { DatabaseService } from 'src/database/api-database.service copy';
-import { UsersDto } from 'src/users/Users';
+import { CadastroDto, UsersDto } from 'src/users/Users';
 
 @Injectable()
 export class AuthService {
@@ -27,10 +27,10 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
-  async cadastrar(body: UsersDto) {
+  async cadastrar(body: CadastroDto) {
     const db = this.DatabaseService.getConnection();
     console.log('Usuário adicionado com sucesso!')
-    return await db.schema.raw(`INSERT INTO cadastro (email, senha) VALUES ('${body.email}', '${body.senha}'`)
+    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${body.data.senha}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`)
 
   }
 }

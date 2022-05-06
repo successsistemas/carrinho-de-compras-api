@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import knexfn, { Knex } from 'knex';
 import { Injectable } from '@nestjs/common';
 
