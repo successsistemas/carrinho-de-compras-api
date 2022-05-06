@@ -16,5 +16,12 @@ export class CadastroDto {
   numero_endereco: string;
   email: string;
   senha: string;
-  data: any
+  data: any;
+}
+
+export class LoginDto {
+  email: string;
+  senha: string;
+  [0]: any
+  body: any
 }

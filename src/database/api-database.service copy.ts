@@ -22,4 +22,5 @@ export class DatabaseService {
 	getConnection() {
 		return this.knex;
 	}
+
 }
