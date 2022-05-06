@@ -1,7 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Query } from '@nestjs/common';
+import { DatabaseService } from './database/api-database.service copy';
+import { UsersDto } from './users/Users';
 
 @Injectable()
 export class AppService {
+  
   getHello(): string {
     return 'Hello World!';
   }
@@ -9,4 +12,5 @@ export class AppService {
   Login(): string {
     return `Fez Login`;
   }
+ 
 }
