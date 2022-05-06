@@ -17,8 +17,4 @@ export class CadastroDto {
   email: string;
   senha: string;
   data: any
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 005ad23ebff3e2adf41e19d6c8719f11a11ee7ac
