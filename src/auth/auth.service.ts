@@ -18,9 +18,10 @@ export class AuthService {
     console.log("Usuário logado com sucesso!")
     const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${body.body.data.senha}'`);
     if (rows.length > 0) {
+      
+      return 'Logado com sucesso!'
 
-      return rows[0];
-    }
+ }
     
     throw new UnauthorizedException;
 }

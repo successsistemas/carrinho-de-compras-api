@@ -14,7 +14,7 @@ export class AppController {
   return this.authService.validateUser(body);
   
   }
-
+ 
   @UseGuards(JwtAuthGuard)
   @Post('auth/user')
   getProfile(@Request() req) {
