@@ -9,9 +9,12 @@ import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { DatabaseService } from 'src/database/api-database.service copy';
 import { DatabaseModule } from 'src/database/database.module';
+import { CriptoModule } from 'src/cripto/cripto.module';
+import { CriptoService } from 'src/cripto/cripto.service';
 
 @Module({
   imports: [
+    CriptoModule,
     UsersModule,
     DatabaseModule,
     PassportModule,
@@ -20,7 +23,7 @@ import { DatabaseModule } from 'src/database/database.module';
       signOptions: { expiresIn: '60s' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, DatabaseService],
+  providers: [AuthService, LocalStrategy, JwtStrategy, DatabaseService, CriptoService],
   exports: [AuthService],
 })
 export class AuthModule {}
