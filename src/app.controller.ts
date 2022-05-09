@@ -3,7 +3,7 @@ import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
-import { CadastroDto, CadastroGoogleDto, LoginDto, UsersDto } from './users/Users';
+import { CadastroDto, LoginGoogleDto } from './users/Users';
 
 @Controller()
 export class AppController {
@@ -26,8 +26,8 @@ export class AppController {
       return body.data
   }
   @Post('auth/cadastrogoogle')
-  cadastroGoogle(@Body() body: CadastroGoogleDto) {
-      this.authService.cadastroGoogle(body);
+  cadastroGoogle(@Body() body: LoginGoogleDto) {
+      this.authService.LoginGoogle(body);
       console.log(body)
       return body
   }
