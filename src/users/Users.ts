@@ -25,3 +25,10 @@ export class LoginDto {
   [0]: any
   body: any
 }
+
+export class CadastroGoogleDto {
+  name: string;
+  email: string;
+  googleId: string;
+  profileObj: any
+}
