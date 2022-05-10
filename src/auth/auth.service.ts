@@ -19,7 +19,7 @@ export class AuthService {
     const chave = 'criptografia';
     const encode = await this.cripto.publicEncript(cifra, chave)
     console.log("Usuário logado com sucesso!")
-    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = hex('${encode}')`);
+    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
       return 'Logado com sucesso!'
 
@@ -33,7 +33,7 @@ export class AuthService {
     const chave = 'criptografia';
     const encode = await this.cripto.publicEncript(cifra, chave)
     console.log('Usuário adicionado com sucesso!')
-    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', unhex('${encode}'), '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`)
+    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`)
   }
   async LoginGoogle(body: LoginGoogleDto) {
     const db = this.DatabaseService.getConnection();
