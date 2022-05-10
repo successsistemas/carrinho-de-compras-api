@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CriptoService } from 'src/cripto/cripto.service';
 import { DatabaseService } from 'src/database/api-database.service copy';
-import { CadastroDto, LoginDto, LoginGoogleDto } from 'src/users/Users';
+import { CadastroDto, CadastroGoogleDto, LoginDto } from 'src/users/Users';
 
 @Injectable()
 export class AuthService {
@@ -35,9 +35,9 @@ export class AuthService {
     console.log('Usuário adicionado com sucesso!')
     return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`)
   }
-  async LoginGoogle(body: LoginGoogleDto) {
+  async CadastroGoogle(body: CadastroGoogleDto) {
     const db = this.DatabaseService.getConnection();
     console.log('Usuário adicionado com sucesso!')
-    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha) VALUES ('${body.profileObj.name}', '${body.profileObj.email}', '${body.googleId}')`)
+    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}', '01922231113', 'Paracatu', 'Rua José Francisco ', 'testes', 'Centro', '38600188', '76')`)
   }
 }

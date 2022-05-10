@@ -26,9 +26,10 @@ export class LoginDto {
   body: any
 }
 
-export class LoginGoogleDto {
+export class CadastroGoogleDto {
   name: string;
   email: string;
   googleId: string;
-  profileObj: any
+  profileObj: any;
+  response: any;
 }
