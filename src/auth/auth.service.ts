@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CriptoService } from 'src/cripto/cripto.service';
@@ -10,8 +11,7 @@ export class AuthService {
     private jwtService: JwtService,
     private DatabaseService: DatabaseService,
     private readonly cripto: CriptoService
-  ) 
-  {}
+  ) { }
 
   async validateUser(body: any): Promise<any> {
     const db = this.DatabaseService.getConnection();
