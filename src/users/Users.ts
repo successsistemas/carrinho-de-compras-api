@@ -33,3 +33,20 @@ export class CadastroGoogleDto {
   profileObj: any;
   response: any;
 }
+
+export class DadosRestantesGoogleDto {
+  cpf: string;
+  estado: string;
+  cidade: string;
+  rua: string;
+  bairro: string;
+  cep: string;
+  numero: string;
+  data: any
+}
+
+export class LoginGoogleDto {
+  body: any;
+  profileObj: any;
+  googleId: string
+}

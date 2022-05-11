@@ -3,7 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CriptoService } from 'src/cripto/cripto.service';
 import { DatabaseService } from 'src/database/api-database.service copy';
-import { CadastroDto, CadastroGoogleDto, LoginDto } from 'src/users/Users';
+import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto, LoginGoogleDto } from 'src/users/Users';
 
 @Injectable()
 export class AuthService {
@@ -26,6 +26,17 @@ export class AuthService {
     }
     throw new UnauthorizedException;
   }
+  async LoginGoogle(body: LoginGoogleDto) {
+    const db = this.DatabaseService.getConnection();
+    console.log('Usuário logado com sucesso!')
+    const [rows] = await db.raw(`SELECT senha FROM cadastro WHERE senha = '${body.body.response.profileObj.googleId}' `)
+    if (rows.length > 0) {
+      return body.body
+
+    }
+    throw new UnauthorizedException;
+  } 
+  
 
   async cadastrar(body: CadastroDto) {
     const db = this.DatabaseService.getConnection();
@@ -38,6 +49,11 @@ export class AuthService {
   async CadastroGoogle(body: CadastroGoogleDto) {
     const db = this.DatabaseService.getConnection();
     console.log('Usuário adicionado com sucesso!')
-    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}', '01922231113', 'Paracatu', 'Rua José Francisco ', 'testes', 'Centro', '38600188', '76')`)
+    return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`)
+  }
+  async CadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto) {
+    const db = this.DatabaseService.getConnection();
+    console.log('Usuário atualizado com sucesso!')
+    return await db.schema.raw(`UPDATE cadastro SET cpf = '${data.data.cpf}', estado = '${data.data.estado}', cidade = '${data.data.cidade}', rua = '${data.data.rua}', bairro = '${data.data.bairro}', cep = '${data.data.cep}', numero_endereco = '${data.data.numero}' WHERE senha = '${data.data.GoogleId}' `)
   }
 }
