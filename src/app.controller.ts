@@ -30,8 +30,8 @@ export class AppController {
   }
   @Post('auth/cadastro-google')
   cadastroGoogle(@Body() body: CadastroGoogleDto) {
-    this.authService.CadastroGoogle(body);
-     return body
+    return this.authService.CadastroGoogle(body);
+     
   }
   @Post('auth/cadastro-dadosrestantes-google')
   cadastroDadosRestantesGoogle(@Body() data: DadosRestantesGoogleDto) {
