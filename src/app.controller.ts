@@ -25,8 +25,7 @@ export class AppController {
   }
   @Post('auth/cadastro')
   adicionar(@Body() body: CadastroDto) {
-    this.authService.cadastrar(body);
-    return body.data
+  return this.authService.cadastrar(body);
   }
   @Post('auth/cadastro-google')
   cadastroGoogle(@Body() body: CadastroGoogleDto) {
