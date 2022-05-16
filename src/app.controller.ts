@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Body, Get } from '@nestjs/common';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
@@ -36,6 +36,11 @@ export class AppController {
   cadastroDadosRestantesGoogle(@Body() data: DadosRestantesGoogleDto) {
     this.authService.CadastroDadosRestantesGoogle(data);
     return data
+  }
+  @Post('auth/NomeUser')
+  NomeUser(@Body() data: any) {
+   return this.authService.NomeUser(data);
+    
   }
 
 }

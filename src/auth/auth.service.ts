@@ -56,4 +56,9 @@ export class AuthService {
     console.log('Usuário atualizado com sucesso!')
     return await db.schema.raw(`UPDATE cadastro SET cpf = '${data.data.cpf}', estado = '${data.data.estado}', cidade = '${data.data.cidade}', rua = '${data.data.rua}', bairro = '${data.data.bairro}', cep = '${data.data.cep}', numero_endereco = '${data.data.numero}' WHERE senha = '${data.data.GoogleId}' `)
   }
+  async NomeUser(data: any) {
+    const db = this.DatabaseService.getConnection();
+    console.log('Nome encontrado com sucesso!')
+    return await db.schema.raw(`SELECT nome from cadastro where email = '${data.data.email}' `)
+  }
 }
