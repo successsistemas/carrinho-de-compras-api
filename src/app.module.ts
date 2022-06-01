@@ -7,12 +7,13 @@ import { CriptoController } from './cripto/cripto.controller';
 import { CriptoModule } from './cripto/cripto.module';
 import { DatabaseModule } from './database/database.module';
 import { MerchantsModule } from './merchants/merchants.module';
+import { UserModule } from './user/user.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
 
-    AuthModule, UsersModule, CriptoModule, DatabaseModule, MerchantsModule, ConfigModule.forRoot({
+    AuthModule, UsersModule, CriptoModule, DatabaseModule, MerchantsModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],

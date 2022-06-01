@@ -20,7 +20,7 @@ let ApiDatabaseService = class ApiDatabaseService {
     constructor(configService) {
         const host = configService.get('database.host');
         if (!host) {
-            throw new Error('VARIÁVEL DE AMBIENTE DATABASE_HOST NÃO FOI CONFIGURADA');
+            throw new Error('VARIÁVEL DE AMBIENTE DATABASE_HOST NÃO FOI CONFIGURADA!');
         }
         const port = configService.get('database.port');
         if (!port) {
