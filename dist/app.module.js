@@ -17,15 +17,18 @@ const auth_module_1 = require("./auth/auth.module");
 const configuracao_1 = __importDefault(require("./config/configuracao"));
 const cripto_module_1 = require("./cripto/cripto.module");
 const database_module_1 = require("./database/database.module");
+const merchants_module_1 = require("./merchants/merchants.module");
 const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, config_1.ConfigModule.forRoot({
+        imports: [
+            auth_module_1.AuthModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, merchants_module_1.MerchantsModule, config_1.ConfigModule.forRoot({
                 load: [configuracao_1.default],
                 isGlobal: true
-            })],
+            })
+        ],
         controllers: [app_controller_1.AppController],
         providers: [config_1.ConfigService],
     })
