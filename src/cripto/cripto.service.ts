@@ -51,7 +51,7 @@ export class CriptoService {
     return this.publicDecript(cifra, this.chaveCripto)
   }
 
-  async restaurar(texto: string) {
-    return this.restaurar(texto);
-  }
+  // async restaurar(texto: string) {
+  //   return this.restaurar(texto);
+  // }
 }

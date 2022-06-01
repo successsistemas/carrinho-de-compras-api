@@ -9,11 +9,13 @@ import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, CriptoModule, DatabaseModule, ConfigModule.forRoot({
-    load: [configuracao],
-    isGlobal: true
-  })],
+  imports: [
+
+    AuthModule, UsersModule, CriptoModule, DatabaseModule, ConfigModule.forRoot({
+      load: [configuracao],
+      isGlobal: true
+    })],
   controllers: [AppController],
-  providers: [ ConfigService],
+  providers: [ConfigService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -14,6 +14,6 @@ export declare class ConnectionService {
         servidorHex: any;
         bcohex: any;
         dataSincronismo: string;
-    }>;
+    } | undefined>;
     getConexaoCliente(contrato: string): Promise<import("knex").Knex<any, any[]>>;
 }

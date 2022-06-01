@@ -43,9 +43,6 @@ let CriptoService = class CriptoService {
     async decriptar(cifra) {
         return this.publicDecript(cifra, this.chaveCripto);
     }
-    async restaurar(texto) {
-        return this.restaurar(texto);
-    }
 };
 CriptoService = __decorate([
     (0, common_1.Injectable)(),

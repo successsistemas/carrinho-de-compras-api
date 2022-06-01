@@ -1,39 +1,39 @@
 declare const _default: () => {
-    chaveCripto: string;
+    chaveCripto: string | undefined;
     databaseTeste: {
-        host: string;
+        host: string | undefined;
         port: number;
-        user: string;
-        password: string;
-        name: string;
+        user: string | undefined;
+        password: string | undefined;
+        name: string | undefined;
     };
     database: {
-        host: string;
+        host: string | undefined;
         port: number;
-        user: string;
-        password: string;
-        name: string;
+        user: string | undefined;
+        password: string | undefined;
+        name: string | undefined;
     };
     success: {
-        host: string;
+        host: string | undefined;
         port: number;
-        user: string;
-        password: string;
-        name: string;
+        user: string | undefined;
+        password: string | undefined;
+        name: string | undefined;
     };
     siteSuccess: {
-        host: string;
+        host: string | undefined;
         port: number;
-        user: string;
-        password: string;
-        name: string;
+        user: string | undefined;
+        password: string | undefined;
+        name: string | undefined;
     };
     fornecedor: {
-        host: string;
+        host: string | undefined;
         port: number;
-        user: string;
-        password: string;
-        name: string;
+        user: string | undefined;
+        password: string | undefined;
+        name: string | undefined;
     };
 };
 export default _default;

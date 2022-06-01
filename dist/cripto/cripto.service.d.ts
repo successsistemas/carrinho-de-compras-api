@@ -7,5 +7,4 @@ export declare class CriptoService {
     publicDecript(cifra: string, chave: string): Promise<string>;
     encriptar(cifra: string): Promise<string>;
     decriptar(cifra: string): Promise<string>;
-    restaurar(texto: string): any;
 }
