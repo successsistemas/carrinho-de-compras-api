@@ -27,7 +27,13 @@ export class UserController {
 					"title": "Francesinha",
 					"productId": 1,
 					"quantity": 2
-				}
+				},
+				{
+					"url": "https://t2.rg.ltmcdn.com/pt/posts/3/8/0/francesinha_a_moda_do_porto_2083_600.jpg",
+					"title": "Macarrão",
+					"productId": 1,
+					"quantity": 5
+				},
 			],
 			"__v": 0
 		}
