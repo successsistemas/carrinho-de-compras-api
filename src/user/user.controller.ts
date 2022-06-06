@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, Post, Query } from "@nestjs/common";
 
 @Controller("user")
 export class UserController {
@@ -36,11 +36,29 @@ export class UserController {
 		"__v": 0
 	}
 
+	cart =       {
+		userId:3,
+		date:2019-12-10,
+		products:[
+			{
+				"url": "https://t2.rg.ltmcdn.com/pt/posts/3/8/0/francesinha_a_moda_do_porto_2083_600.jpg",
+				"title": "Novo Produto",
+				"productId": 3,
+				"quantity": 4
+			},
+		]
+	}
+
 	@Get('cart/:userId')
 	getUserCart(@Param('userId') userId: string) {
 
 		return this.merchant;
 	}
+	@Post('cart/:userId/:cartId')
+	postToCard(@Query('userId/cartId')cardId: string, userId:string ) {
+		return this.cart
+	}
+
 
 
 }
