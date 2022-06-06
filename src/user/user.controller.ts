@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 
 @Controller("user")
 export class UserController {
@@ -44,7 +44,7 @@ export class UserController {
 				"url": "https://t2.rg.ltmcdn.com/pt/posts/3/8/0/francesinha_a_moda_do_porto_2083_600.jpg",
 				"title": "Novo Produto",
 				"productId": 3,
-				"quantity": 4
+				"quantity": 5
 			},
 		]
 	}
@@ -55,7 +55,8 @@ export class UserController {
 		return this.merchant;
 	}
 	@Post('cart/:userId/:cartId')
-	postToCard(@Query('userId/cartId')cardId: string, userId:string ) {
+	postToCard(@Query('userId/cartId')cardId: any, userId:string) {
+		console.log(cardId)
 		return this.cart
 	}
 
