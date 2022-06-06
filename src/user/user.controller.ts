@@ -33,8 +33,8 @@ export class UserController {
 		}
 
 		//adicionando produto no carrinho - equivalente ao insert into 
+		this.cart.products.shift
 		this.cart.products.push(produto)
-
 		return produto
 	}
 
