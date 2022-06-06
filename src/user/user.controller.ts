@@ -7,7 +7,9 @@ export class UserController {
 	cart = {
 		userId: 3,
 		date: 2019 - 12 - 10,
-		products: [{}]
+		products: [{
+			'': ''
+		}]
 	}
 
 
