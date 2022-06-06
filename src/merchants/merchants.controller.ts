@@ -34,7 +34,7 @@ export class MerchantsController {
 			description: "string",
 			type: "RESTAURANT",
 			status: "AVAILABLE",
-			createdAt: "2022-06-01T14:53:00.550Z",
+			createdAt: "2022-07-01T14:53:00.550Z",
 			address: {
 				country: "string",
 				state: "string",
