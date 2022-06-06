@@ -7,7 +7,9 @@ export class UserController {
 	cart = {
 		userId: 3,
 		date: 2019 - 12 - 10,
-		products: [{}]
+		products: [{
+			url: 1
+		}]
 	}
 
 
@@ -33,7 +35,7 @@ export class UserController {
 		}
 
 		//adicionando produto no carrinho - equivalente ao insert into 
-		this.cart.products.shift
+		this.cart.products.shift()
 		this.cart.products.push(produto)
 		return produto
 	}
