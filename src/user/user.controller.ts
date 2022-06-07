@@ -46,7 +46,7 @@ export class UserController {
 			productId: 1,
 			quantity: 5
 		}
-		this.cart.products.slice(produto)
+		this.cart.products.splice(produto)
 		return produto
 	}
 
