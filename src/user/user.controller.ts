@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
 
 @Controller("user")
 export class UserController {
@@ -33,11 +33,23 @@ export class UserController {
 		}
 
 		//adicionando produto no carrinho - equivalente ao insert into 
-		this.cart.products.shift
+		
 		this.cart.products.push(produto)
 		return produto
 	}
 
+	@Put('removerproduto/:userId/:cartId')
+	removerProdutoDoCarrinho(@Query('userId/cartId') cardId: string, userId: string, @Body() body: any) {
+		const produto:any = {
+			url: body.produtoimage,
+			title: body.productname,
+			productId: 1,
+			quantity: 5
+		}
+		this.cart.products.pop()
+		console.log('teste')
+		return produto
+	}
 
 
 }
