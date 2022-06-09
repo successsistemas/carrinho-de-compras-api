@@ -13,4 +13,16 @@ export class EmpresasService {
 		const empresas = JSON.parse(bufferJson.toString());
 		return empresas;
     }
+    async findById(id: number) {
+        const absolutepath = path.resolve('./src/empresas/fakeempresas.json')
+		const bufferJson:Buffer = readFileSync(absolutepath);
+		const empresas = JSON.parse(bufferJson.toString());
+		const todos = empresas.find((title:any) => title?.id === id);
+	
+		if (!todos) {
+		  throw Error(`Produto com o ID '${id}' não encontrado.`);
+		}
+	
+		return todos;
+	  }
 }
