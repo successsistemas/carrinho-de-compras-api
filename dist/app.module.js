@@ -10,6 +10,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const empresas_module_1 = require("./empresas/empresas.module");
+const empresas_service_1 = require("./empresas/empresas.service");
+const empresas_controller_1 = require("./empresas/empresas.controller");
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
@@ -17,7 +20,7 @@ const auth_module_1 = require("./auth/auth.module");
 const configuracao_1 = __importDefault(require("./config/configuracao"));
 const cripto_module_1 = require("./cripto/cripto.module");
 const database_module_1 = require("./database/database.module");
-const merchants_module_1 = require("./merchants/merchants.module");
+const produtos_module_1 = require("./produtos/produtos.module");
 const user_module_1 = require("./user/user.module");
 const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
@@ -25,13 +28,18 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            auth_module_1.AuthModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, merchants_module_1.MerchantsModule, user_module_1.UserModule, config_1.ConfigModule.forRoot({
+            empresas_module_1.EmpresasModule,
+            auth_module_1.AuthModule, produtos_module_1.ProdutosModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, user_module_1.UserModule, config_1.ConfigModule.forRoot({
                 load: [configuracao_1.default],
                 isGlobal: true
             })
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [config_1.ConfigService],
+        controllers: [
+            empresas_controller_1.EmpresasController, app_controller_1.AppController
+        ],
+        providers: [
+            empresas_service_1.EmpresasService, config_1.ConfigService
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
