@@ -5,8 +5,9 @@ import path from 'path';
 @Injectable()
 export class EmpresasService { 
     getAllEmpresas() {
-        //faz com todos os outros pfv
-        
+       
+        //pode deixae assim por enquanro, depois vou vê como resolver 
+        //na verdade pode até deixar no localhost mesmo
         const absolutepath = path.resolve('./src/empresas/empresas.json')
 		const bufferJson:Buffer = readFileSync(absolutepath);
 		const empresas = JSON.parse(bufferJson.toString());
