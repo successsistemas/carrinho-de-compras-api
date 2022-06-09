@@ -4,10 +4,9 @@ import { ProdutosService } from "./produtos.service";
 @Controller('produtos')
 export class ProdutosController {
     constructor(private ProdutosService: ProdutosService) {}
-    @Get()
+    @Get('todos')
 	GetAllProducts(@Body() body: any, @Query() params:any) {
-		const result = this.ProdutosService.getAllProducts()
-		return result;
+		return this.ProdutosService.getAllProducts()
 	}
     @Get('testes') 
 	GetTestes(@Body() body:any) {
