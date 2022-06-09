@@ -5,7 +5,7 @@ import { readFileSync } from "fs";
 export class ProdutosService {
 	
     getAllProducts() {
-		const bufferJson:Buffer = readFileSync('produtos.json');
+		const bufferJson:Buffer = readFileSync('./src/produtos/produtos.json');
 		const products = JSON.parse(bufferJson.toString());
 		return products;
 	}
