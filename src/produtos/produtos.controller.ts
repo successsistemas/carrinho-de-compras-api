@@ -9,4 +9,11 @@ export class ProdutosController {
 		const result = this.ProdutosService.getAllProducts()
 		return result;
 	}
+    @Get('testes') 
+	GetTestes(@Body() body:any) {
+
+		return `Testes`;
+	}
+		
+	
 }
