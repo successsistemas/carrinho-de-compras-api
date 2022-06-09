@@ -6,7 +6,7 @@ import path from "path";
 export class ProdutosService {
 	
     getAllProducts() {
-		const absolutepath = path.resolve('./src/produtos/produtos.json')
+		const absolutepath = path.resolve('./src/produtos/fakeprodutos.json')
 		const bufferJson:Buffer = readFileSync(absolutepath);
 		const products = JSON.parse(bufferJson.toString());
 		return products;

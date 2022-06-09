@@ -6,3 +6,6 @@ export class UserService {
 		
 	}
 }
+
+//a tota merchants vc mudou de nome?
+// apaguei ela e refiz com o nome empresas blz
