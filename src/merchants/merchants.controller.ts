@@ -1,7 +1,10 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Query } from "@nestjs/common";
+import { MerchantsService } from "./merchants.service";
 
 @Controller("merchants")
 export class MerchantsController {
+
+	constructor(private merchantsService: MerchantsService) { }
 
 	@Get()
 	getMerchants() {
@@ -48,6 +51,12 @@ export class MerchantsController {
 			}
 		}
 		return merchant;
+	}
+
+	@Get('produtos/:idEmpresa')
+	GetAllProducts(@Body() body: any, @Query() params:any) {
+		const result = this.merchantsService.getAllProducts();
+		return result;
 	}
 
 
