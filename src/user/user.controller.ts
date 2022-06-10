@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
 import e from "express";
+import { UserService } from "./user.service";
 @Controller("user")
 export class UserController {
+	constructor(private UserService: UserService) {}
 
 	//variavel simulando o banco, ela vai ficar aqui até a aplicação ser encerrada, fora isso os valores vão continuar
 	cart = {
@@ -15,12 +17,20 @@ export class UserController {
 		}]
 	}
 
-	@Get('cart/:userId')
-	getUserCart(@Param('userId') userId: string) {
+	@Get('cart')
+	getUserCart(@Body() body: string) {
 
-		return this.cart;
+		return this.UserService.getAllCarts();
 
 	}
+
+	@Get('cart/:userId')
+	getAllCartsByUserId(@Param('userId', ParseIntPipe) id:any) {
+		return this.UserService.findById(id).catch((e:any) => {
+			throw new NotFoundException(e.message);
+		  });
+	}
+
 	@Post('cart/:userId/:cartId')
 	adicionarProdutoAoCarrinho(@Query('userId/cartId') cardId: string, userId: string, @Body() body: any) {
 
