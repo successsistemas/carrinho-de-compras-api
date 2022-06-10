@@ -35,16 +35,16 @@ export class UserService {
 	}
 
 	async postToCart(body: any) {
-
+		
 		const produto: any = {
 			url: body.url,
 			title: body.title,
 			productId: body.productId,
 			quantity: body.quantity
 		}
-
+		
 		let carrinho = []
-
+		
 
 		const absolutepath = path.resolve('./src/user/carrinho.json')
 		const carrinhObj: Buffer = readFileSync(absolutepath);
