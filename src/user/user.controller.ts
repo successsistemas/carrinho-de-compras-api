@@ -32,6 +32,11 @@ export class UserController {
 	}
 
 	@Post('cart/:userId/:cartId')
+	addProductToCart(@Query('userId/cartId') query : any, @Body() body: any) {
+		return this.UserService.postToCart(body);
+	}
+	
+	@Post('carts/:userId/:cartId')
 	adicionarProdutoAoCarrinho(@Query('userId/cartId') cardId: string, userId: string, @Body() body: any) {
 
 		//primeiro item ta vazio por causa do {}
@@ -72,9 +77,10 @@ export class UserController {
 
 		//coloca essa nova lista com o id removido no lugar da products
 		this.cart.products = novalIstaProdutos;
+	}
 
-
-
-
+	@Delete('removerprodutos/:userId/:idProduct') 
+	removerProdutodoCart(@Param() params:any) {
+		return this.UserService.removeItemFromCart(params)
 	}
 }
