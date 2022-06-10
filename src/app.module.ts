@@ -1,3 +1,4 @@
+import { CarrinhoModule } from './carrinho/carrinho.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { EmpresasService } from './empresas/empresas.service';
 import { EmpresasController } from './empresas/empresas.controller';
@@ -12,17 +13,19 @@ import { DatabaseModule } from './database/database.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { UserModule } from './user/user.module';
 import { UsersModule } from './users/users.module';
+import { CarrinhoController } from './carrinho/carrinho.controller';
 
 @Module({
   imports: [
+    CarrinhoModule,
     EmpresasModule,
 
-    AuthModule, ProdutosModule, UsersModule, CriptoModule, DatabaseModule,  UserModule, ConfigModule.forRoot({
+    AuthModule, ProdutosModule, UsersModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],
   controllers: [
-    EmpresasController, AppController],
+    EmpresasController, AppController, CarrinhoController],
   providers: [
     EmpresasService, ConfigService],
 })

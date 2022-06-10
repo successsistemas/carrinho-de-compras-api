@@ -24,6 +24,8 @@ export class UserController {
 
 	}
 
+	//fico puto
+
 	@Get('cart/:userId')
 	getAllCartsByUserId(@Param('userId', ParseIntPipe) id: any) {
 		return this.UserService.findById(id).catch((e: any) => {
