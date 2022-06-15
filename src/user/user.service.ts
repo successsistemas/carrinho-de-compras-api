@@ -37,10 +37,10 @@ export class UserService {
 	async postToCart(body: any) {
 		
 		const produto: any = {
-			url: body.url,
-			title: body.title,
+			url: body.produtoimage,
+			title: body.productname,
 			productId: body.productId,
-			quantity: body.quantity
+			quantity: body.productprice
 		}
 		
 		let carrinho = []
