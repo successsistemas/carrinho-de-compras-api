@@ -1,5 +1,12 @@
 {
      "userId": 3,
      "date": "2019 - 12 - 10",
-     "products": []
+     "products": [
+          {
+               "productId": 3
+          },
+          {
+               "productId": 3
+          }
+     ]
 }

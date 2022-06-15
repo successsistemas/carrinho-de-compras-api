@@ -7,13 +7,13 @@ export class ProdutosService {
 	
 	
     getAllProducts() {
-		const absolutepath = path.resolve('./src/produtos/fakeprodutos.json')
+		const absolutepath = path.resolve('./src/produtos/produtos.json')
 		const bufferJson:Buffer = readFileSync(absolutepath);
 		const products = JSON.parse(bufferJson.toString());
 		return products;
 	}
 	async findById(id: number) {
-		const absolutepath = path.resolve('./src/produtos/fakeprodutos.json')
+		const absolutepath = path.resolve('./src/produtos/produtos.json')
 		const bufferJson:Buffer = readFileSync(absolutepath);
 		const products = JSON.parse(bufferJson.toString());
 		const todos = products.find((title:any) => title?.id === id);
