@@ -46,7 +46,7 @@ export class UserController {
 
 	}
 
-	@Delete('removerprodutos/:userId/:idProduct')
+	@Delete('removerproduto/:userId/:idProduct')
 	removerProdutodoCart(@Param() params: any) {
 		return this.UserService.removeItemFromCart(params)
 	}
