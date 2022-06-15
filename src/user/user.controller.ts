@@ -47,7 +47,12 @@ export class UserController {
 	}
 
 	@Delete('removerproduto/:userId/:idProduct')
-	removerProdutodoCart(@Param() params: any) {
-		return this.UserService.removeItemFromCart(params)
+	async removerProdutodoCart(@Param() params: any) {
+		try {
+			await this.UserService.removeItemFromCart(params)
+			return { msg: "sucesso" }
+		} catch (e:any) {
+			return { msg: "error:" + e.message }
+		}
 	}
 }
