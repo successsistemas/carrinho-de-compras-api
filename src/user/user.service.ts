@@ -40,7 +40,7 @@ export class UserService {
 			url: body.produtoimage,
 			title: body.productname,
 			productId: body.productId,
-			quantity: body.productprice
+			quantity: body.quantity
 		}
 		
 		let carrinho = []
