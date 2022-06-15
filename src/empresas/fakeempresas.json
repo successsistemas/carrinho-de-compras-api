@@ -28,8 +28,8 @@
     },
     {
     "id": 4,
-    "name": "string",
-    "corporateName": "string",
+    "name": "Pizza Hut",
+    "corporateName": "Pizza Hut",
     "miniaturePic": "https://logosmarcas.net/wp-content/uploads/2021/10/Pizza-Hut-Logo.png",
     "description": "string",
     "type": "PIZZARIA",
