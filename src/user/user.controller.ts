@@ -51,7 +51,7 @@ export class UserController {
 		try {
 			await this.UserService.removeItemFromCart(params)
 			return { msg: "sucesso" }
-		} catch (e:any) {
+		} catch (e: any) {
 			return { msg: "error:" + e.message }
 		}
 	}
