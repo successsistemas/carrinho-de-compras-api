@@ -8,7 +8,7 @@ export class AppController {
   constructor(private authService: AuthService) { }
   @UseGuards()
   @Post('auth/login')
-  async login(@Request() body: LoginDto) {
+  async login(@Body() body: LoginDto) {
     return this.authService.validateuser(body);
 
   }

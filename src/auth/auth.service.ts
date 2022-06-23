@@ -14,9 +14,10 @@ export class AuthService {
   ) { }
 
   async login(body: LoginDto): Promise<any> {
-    const cifra = body.body.senha
+    const senha = body.senha
+    console.log(body.email)
     console.log("Usuário logado com sucesso!")
-    return cifra
+    return senha
   }
 
   async validateuser(body: LoginDto) {
@@ -24,7 +25,7 @@ export class AuthService {
     const cifra = await this.login(body)
     const encode = await this.cripto.publicEncript(cifra, chave)
     const db = this.DatabaseService.getConnection();
-    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.email}' and senha = '${encode}'`);
+    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
         return {access_token: this.jwtService.sign({})
         }    

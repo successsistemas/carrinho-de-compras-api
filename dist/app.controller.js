@@ -48,7 +48,7 @@ __decorate([
     (0, common_1.UseGuards)(),
     (0, common_1.Post)('auth/login'),
     openapi.ApiResponse({ status: 201 }),
-    __param(0, (0, common_1.Request)()),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Users_1.LoginDto]),
     __metadata("design:returntype", Promise)
