@@ -31,7 +31,7 @@ let AuthService = class AuthService {
         const cifra = await this.login(body);
         const encode = await this.cripto.publicEncript(cifra, chave);
         const db = this.DatabaseService.getConnection();
-        const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.email}' and senha = '${encode}'`);
+        const [rows] = await db.raw(`select email, senha from usuario where email ='${body.email}' and senha = '${encode}'`);
         if (rows.length > 0) {
             return { access_token: this.jwtService.sign({})
             };
@@ -41,7 +41,7 @@ let AuthService = class AuthService {
     async loginGoogle(body) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário logado com sucesso!');
-        const [rows] = await db.raw(`SELECT senha FROM cadastro WHERE senha = '${body.body.response.profileObj.googleId}' `);
+        const [rows] = await db.raw(`SELECT senha FROM usuario WHERE senha = '${body.body.response.profileObj.googleId}' `);
         if (rows.length > 0) {
             return { access_token: this.jwtService.sign({})
             };
@@ -54,22 +54,22 @@ let AuthService = class AuthService {
         const chave = 'criptografia';
         const encode = await this.cripto.publicEncript(cifra, chave);
         console.log('Usuário adicionado com sucesso!');
-        return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`);
+        return await db.schema.raw(`INSERT INTO usuario (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`);
     }
     async cadastroGoogle(body) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário adicionado com sucesso!');
-        return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`);
+        return await db.schema.raw(`INSERT INTO usuario (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`);
     }
     async cadastroDadosRestantesGoogle(data) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário atualizado com sucesso!');
-        return await db.schema.raw(`UPDATE cadastro SET cpf = '${data.data.cpf}', estado = '${data.data.estado}', cidade = '${data.data.cidade}', rua = '${data.data.rua}', bairro = '${data.data.bairro}', cep = '${data.data.cep}', numero_endereco = '${data.data.numero}' WHERE senha = '${data.data.GoogleId}' `);
+        return await db.schema.raw(`UPDATE usuario SET cpf = '${data.data.cpf}', estado = '${data.data.estado}', cidade = '${data.data.cidade}', rua = '${data.data.rua}', bairro = '${data.data.bairro}', cep = '${data.data.cep}', numero_endereco = '${data.data.numero}' WHERE senha = '${data.data.GoogleId}' `);
     }
     async nomeUser(data) {
         const db = this.DatabaseService.getConnection();
         console.log('Nome encontrado com sucesso!');
-        return await db.schema.raw(`SELECT nome from cadastro where email = '${data.data.email}' `);
+        return await db.schema.raw(`SELECT nome from usuario where email = '${data.data.email}' `);
     }
 };
 AuthService = __decorate([
