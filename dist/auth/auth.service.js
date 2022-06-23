@@ -32,8 +32,7 @@ let AuthService = class AuthService {
         const db = this.DatabaseService.getConnection();
         const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
         if (rows.length > 0) {
-            return {
-                access_token: this.jwtService.sign({})
+            return { access_token: this.jwtService.sign({})
             };
         }
         throw new common_1.UnauthorizedException("Senha incorreta!");
@@ -43,9 +42,9 @@ let AuthService = class AuthService {
         console.log('Usuário logado com sucesso!');
         const [rows] = await db.raw(`SELECT senha FROM cadastro WHERE senha = '${body.body.response.profileObj.googleId}' `);
         if (rows.length > 0) {
-            return body.body;
+            return body.body.response.profileObj;
         }
-        throw new common_1.UnauthorizedException;
+        throw new common_1.UnauthorizedException("Não foi possível fazer o login");
     }
     async cadastrar(body) {
         const db = this.DatabaseService.getConnection();

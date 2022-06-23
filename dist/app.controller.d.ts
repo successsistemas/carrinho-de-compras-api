@@ -6,9 +6,7 @@ export declare class AppController {
     login(body: LoginDto): Promise<{
         access_token: string;
     }>;
-    loginGoogle(body: any): Promise<{
-        access_token: string;
-    }>;
+    loginGoogle(body: any): Promise<any>;
     getProfile(req: any): any;
     adicionar(body: CadastroDto): Promise<void>;
     cadastroGoogle(body: CadastroGoogleDto): Promise<void>;

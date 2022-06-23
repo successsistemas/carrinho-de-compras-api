@@ -14,7 +14,7 @@ export class AppController {
   }
   @Post('auth/loginGoogle')
   async loginGoogle(@Request() body: any) {
-    return this.authService.validateuser(body);
+    return this.authService.loginGoogle(body);
   }
 
   @UseGuards(JwtAuthGuard)

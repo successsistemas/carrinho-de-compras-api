@@ -26,7 +26,7 @@ let AppController = class AppController {
         return this.authService.validateuser(body);
     }
     async loginGoogle(body) {
-        return this.authService.validateuser(body);
+        return this.authService.loginGoogle(body);
     }
     getProfile(req) {
         return req.user;
@@ -55,7 +55,7 @@ __decorate([
 ], AppController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('auth/loginGoogle'),
-    openapi.ApiResponse({ status: 201 }),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
