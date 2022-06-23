@@ -11,7 +11,9 @@ export declare class AuthService {
     validateuser(body: LoginDto): Promise<{
         access_token: string;
     }>;
-    loginGoogle(body: LoginGoogleDto): Promise<any>;
+    loginGoogle(body: LoginGoogleDto): Promise<{
+        access_token: string;
+    }>;
     cadastrar(body: CadastroDto): Promise<void>;
     cadastroGoogle(body: CadastroGoogleDto): Promise<void>;
     cadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto): Promise<void>;

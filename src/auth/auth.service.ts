@@ -38,7 +38,8 @@ export class AuthService {
     console.log('Usuário logado com sucesso!')
     const [rows] = await db.raw(`SELECT senha FROM cadastro WHERE senha = '${body.body.response.profileObj.googleId}' `)
     if (rows.length > 0) {
-      return body.body.response.profileObj
+      return {access_token: this.jwtService.sign({})
+    }    
 
     }
     throw new UnauthorizedException("Não foi possível fazer o login");
