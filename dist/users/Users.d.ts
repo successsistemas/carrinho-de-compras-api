@@ -19,6 +19,7 @@ export declare class LoginDto {
     email: string;
     senha: string;
     [0]: any;
+    data: any;
     body: any;
 }
 export declare class CadastroGoogleDto {

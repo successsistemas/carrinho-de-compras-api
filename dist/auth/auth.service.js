@@ -11,22 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
+const jwt_1 = require("@nestjs/jwt");
 const cripto_service_1 = require("../cripto/cripto.service");
 const api_database_service_copy_1 = require("../database/api-database.service copy");
 let AuthService = class AuthService {
-    constructor(DatabaseService, cripto) {
+    constructor(DatabaseService, cripto, jwtService) {
         this.DatabaseService = DatabaseService;
         this.cripto = cripto;
+        this.jwtService = jwtService;
     }
     async validateUser(body) {
         const db = this.DatabaseService.getConnection();
         const cifra = body.body.data.senha;
         const chave = 'criptografia';
         const encode = await this.cripto.publicEncript(cifra, chave);
+        const payload = body.body;
         console.log("Usuário logado com sucesso!");
         const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
         if (rows.length > 0) {
-            return 'Logado com sucesso!';
+            return { access_token: this.jwtService.sign(payload)
+            };
         }
         throw new common_1.UnauthorizedException;
     }
@@ -66,7 +70,8 @@ let AuthService = class AuthService {
 AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [api_database_service_copy_1.DatabaseService,
-        cripto_service_1.CriptoService])
+        cripto_service_1.CriptoService,
+        jwt_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

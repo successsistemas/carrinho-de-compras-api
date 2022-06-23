@@ -22,8 +22,9 @@ export class CadastroDto {
 export class LoginDto {
   email: string;
   senha: string;
-  [0]: any
-  body: any
+  [0]: any;
+  data: any;
+  body: any;
 }
 
 export class CadastroGoogleDto {

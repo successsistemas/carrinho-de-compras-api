@@ -9,18 +9,21 @@ import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto, Logi
 export class AuthService {
   constructor(
     private DatabaseService: DatabaseService,
-    private readonly cripto: CriptoService
+    private readonly cripto: CriptoService,
+    private jwtService: JwtService
   ) { }
 
-  async validateUser(body: any): Promise<any> {
+  async validateUser(body: LoginDto): Promise<any> {
     const db = this.DatabaseService.getConnection();
-    const cifra = body.body.data.senha;
+    const cifra = body.body.data.senha
     const chave = 'criptografia';
     const encode = await this.cripto.publicEncript(cifra, chave)
+    const payload = body.body
     console.log("Usuário logado com sucesso!")
     const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
-      return 'Logado com sucesso!'
+        return {access_token: this.jwtService.sign(payload)
+        }    
 
     }
     throw new UnauthorizedException;

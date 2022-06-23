@@ -50,7 +50,7 @@ __decorate([
     openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Users_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "login", null);
 __decorate([

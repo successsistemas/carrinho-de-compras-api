@@ -2,13 +2,13 @@
 import { Controller, Request, Post, UseGuards, Body, Get } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
-import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto } from './users/Users';
+import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto } from './users/Users';
 @Controller()
 export class AppController {
   constructor(private authService: AuthService) { }
   @UseGuards()
   @Post('auth/login')
-  async login(@Request() body: any) {
+  async login(@Request() body: LoginDto) {
     return this.authService.validateUser(body);
 
   }
