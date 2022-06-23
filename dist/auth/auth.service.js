@@ -20,21 +20,25 @@ let AuthService = class AuthService {
         this.cripto = cripto;
         this.jwtService = jwtService;
     }
-    async validateUser(body) {
-        const db = this.DatabaseService.getConnection();
+    async login(body) {
         const cifra = body.body.data.senha;
-        const chave = 'criptografia';
-        const encode = await this.cripto.publicEncript(cifra, chave);
-        const payload = body.body;
         console.log("Usuário logado com sucesso!");
+        return cifra;
+    }
+    async validateuser(body) {
+        const chave = 'criptografia';
+        const cifra = await this.login(body);
+        const encode = await this.cripto.publicEncript(cifra, chave);
+        const db = this.DatabaseService.getConnection();
         const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
         if (rows.length > 0) {
-            return { access_token: this.jwtService.sign(payload)
+            return {
+                access_token: this.jwtService.sign({})
             };
         }
-        throw new common_1.UnauthorizedException;
+        throw new common_1.UnauthorizedException("Senha incorreta!");
     }
-    async LoginGoogle(body) {
+    async loginGoogle(body) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário logado com sucesso!');
         const [rows] = await db.raw(`SELECT senha FROM cadastro WHERE senha = '${body.body.response.profileObj.googleId}' `);
@@ -51,17 +55,17 @@ let AuthService = class AuthService {
         console.log('Usuário adicionado com sucesso!');
         return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`);
     }
-    async CadastroGoogle(body) {
+    async cadastroGoogle(body) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário adicionado com sucesso!');
         return await db.schema.raw(`INSERT INTO cadastro (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`);
     }
-    async CadastroDadosRestantesGoogle(data) {
+    async cadastroDadosRestantesGoogle(data) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário atualizado com sucesso!');
         return await db.schema.raw(`UPDATE cadastro SET cpf = '${data.data.cpf}', estado = '${data.data.estado}', cidade = '${data.data.cidade}', rua = '${data.data.rua}', bairro = '${data.data.bairro}', cep = '${data.data.cep}', numero_endereco = '${data.data.numero}' WHERE senha = '${data.data.GoogleId}' `);
     }
-    async NomeUser(data) {
+    async nomeUser(data) {
         const db = this.DatabaseService.getConnection();
         console.log('Nome encontrado com sucesso!');
         return await db.schema.raw(`SELECT nome from cadastro where email = '${data.data.email}' `);

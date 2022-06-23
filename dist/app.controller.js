@@ -23,10 +23,10 @@ let AppController = class AppController {
         this.authService = authService;
     }
     async login(body) {
-        return this.authService.validateUser(body);
+        return this.authService.validateuser(body);
     }
     async loginGoogle(body) {
-        return this.authService.LoginGoogle(body);
+        return this.authService.validateuser(body);
     }
     getProfile(req) {
         return req.user;
@@ -35,19 +35,19 @@ let AppController = class AppController {
         return this.authService.cadastrar(body);
     }
     cadastroGoogle(body) {
-        return this.authService.CadastroGoogle(body);
+        return this.authService.cadastroGoogle(body);
     }
     cadastroDadosRestantesGoogle(data) {
-        return this.authService.CadastroDadosRestantesGoogle(data);
+        return this.authService.cadastroDadosRestantesGoogle(data);
     }
     NomeUser(data) {
-        return this.authService.NomeUser(data);
+        return this.authService.nomeUser(data);
     }
 };
 __decorate([
     (0, common_1.UseGuards)(),
     (0, common_1.Post)('auth/login'),
-    openapi.ApiResponse({ status: 201, type: Object }),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Users_1.LoginDto]),
@@ -55,7 +55,7 @@ __decorate([
 ], AppController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('auth/loginGoogle'),
-    openapi.ApiResponse({ status: 201, type: Object }),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

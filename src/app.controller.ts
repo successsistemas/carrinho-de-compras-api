@@ -9,12 +9,12 @@ export class AppController {
   @UseGuards()
   @Post('auth/login')
   async login(@Request() body: LoginDto) {
-    return this.authService.validateUser(body);
+    return this.authService.validateuser(body);
 
   }
   @Post('auth/loginGoogle')
   async loginGoogle(@Request() body: any) {
-    return this.authService.LoginGoogle(body);
+    return this.authService.validateuser(body);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -28,18 +28,18 @@ export class AppController {
   }
   @Post('auth/cadastro-google')
   cadastroGoogle(@Body() body: CadastroGoogleDto) {
-    return this.authService.CadastroGoogle(body);
+    return this.authService.cadastroGoogle(body);
 
   }
   @Post('auth/cadastro-dadosrestantes-google')
   cadastroDadosRestantesGoogle(@Body() data: DadosRestantesGoogleDto) {
-    return this.authService.CadastroDadosRestantesGoogle(data);
+    return this.authService.cadastroDadosRestantesGoogle(data);
 
   }
 
   @Post('auth/DadosUser')
   NomeUser(@Body() data: any) {
-    return this.authService.NomeUser(data);
+    return this.authService.nomeUser(data);
 
   }
 }

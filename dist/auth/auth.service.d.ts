@@ -7,10 +7,13 @@ export declare class AuthService {
     private readonly cripto;
     private jwtService;
     constructor(DatabaseService: DatabaseService, cripto: CriptoService, jwtService: JwtService);
-    validateUser(body: LoginDto): Promise<any>;
-    LoginGoogle(body: LoginGoogleDto): Promise<any>;
+    login(body: LoginDto): Promise<any>;
+    validateuser(body: LoginDto): Promise<{
+        access_token: string;
+    }>;
+    loginGoogle(body: LoginGoogleDto): Promise<any>;
     cadastrar(body: CadastroDto): Promise<void>;
-    CadastroGoogle(body: CadastroGoogleDto): Promise<void>;
-    CadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto): Promise<void>;
-    NomeUser(data: any): Promise<void>;
+    cadastroGoogle(body: CadastroGoogleDto): Promise<void>;
+    cadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto): Promise<void>;
+    nomeUser(data: any): Promise<void>;
 }
