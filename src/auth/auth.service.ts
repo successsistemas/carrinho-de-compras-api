@@ -14,7 +14,7 @@ export class AuthService {
   ) { }
 
   async login(body: LoginDto): Promise<any> {
-    const cifra = body.body.data.senha
+    const cifra = body.body.senha
     console.log("Usuário logado com sucesso!")
     return cifra
   }
@@ -24,7 +24,7 @@ export class AuthService {
     const cifra = await this.login(body)
     const encode = await this.cripto.publicEncript(cifra, chave)
     const db = this.DatabaseService.getConnection();
-    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.data.email}' and senha = '${encode}'`);
+    const [rows] = await db.raw(`select email, senha from cadastro where email ='${body.body.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
         return {access_token: this.jwtService.sign({})
         }    

@@ -55,7 +55,7 @@ __decorate([
 ], AppController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('auth/loginGoogle'),
-    openapi.ApiResponse({ status: 201, type: Object }),
+    openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
