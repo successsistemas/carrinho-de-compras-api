@@ -59,7 +59,14 @@ let AuthService = class AuthService {
     async cadastroGoogle(body) {
         const db = this.DatabaseService.getConnection();
         console.log('Usuário adicionado com sucesso!');
-        return await db.schema.raw(`INSERT INTO usuario (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`);
+        const [rows] = await db.raw(`INSERT INTO usuario (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`);
+        console.log(rows.affectedRows);
+        if (rows.affectedRows > 0) {
+            return { access_token: this.jwtService.sign({})
+            };
+        }
+        else
+            throw new common_1.UnauthorizedException("Não foi possível fazer o cadastro");
     }
     async cadastroDadosRestantesGoogle(data) {
         const db = this.DatabaseService.getConnection();

@@ -11,7 +11,9 @@ export declare class AppController {
     }>;
     getProfile(req: any): any;
     adicionar(body: CadastroDto): Promise<void>;
-    cadastroGoogle(body: CadastroGoogleDto): Promise<void>;
+    cadastroGoogle(body: CadastroGoogleDto): Promise<{
+        access_token: string;
+    }>;
     cadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto): Promise<void>;
     NomeUser(data: any): Promise<void>;
 }

@@ -15,7 +15,9 @@ export declare class AuthService {
         access_token: string;
     }>;
     cadastrar(body: CadastroDto): Promise<void>;
-    cadastroGoogle(body: CadastroGoogleDto): Promise<void>;
+    cadastroGoogle(body: CadastroGoogleDto): Promise<{
+        access_token: string;
+    }>;
     cadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto): Promise<void>;
     nomeUser(data: any): Promise<void>;
 }
