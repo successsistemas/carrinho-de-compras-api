@@ -9,7 +9,7 @@ export class EmpresasService {
 	async getAllEmpresas() {
 
 		const db = this.DatabaseService.getConnection();
-		const [rows] = await db.raw(`SELECT empresa.id, title, description, image, cnpj, sponor FROM usuario INNER JOIN usuario_has_empresa ON usuario_has_empresa.usuario_id = usuario.id INNER JOIN empresa ON empresa.id = empresa_id WHERE usuario.id = 1`);
+		const [rows] = await db.raw(`select title, description, image, cnpj, sponor, phone from empresa INNER JOIN usuario where usuario.id= 1`);
 		return rows;
 	}
 	async findById(id: number) {
