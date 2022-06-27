@@ -1,16 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { readFileSync } from "fs";
 import path from "path";
+import { DatabaseService } from "src/database/api-database.service copy";
 
 @Injectable()
 export class ProdutosService {
+	constructor(private DatabaseService: DatabaseService) {}
 	
 	
-    getAllProducts() {
+    async getAllProducts() {
 		const absolutepath = path.resolve('./src/produtos/produtos.json')
-		const bufferJson:Buffer = readFileSync(absolutepath);
-		const products = JSON.parse(bufferJson.toString());
-		return products;
+		const db = this.DatabaseService.getConnection();
+		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = 1`);
+		return rows;
 	}
 	async findById(id: number) {
 		const absolutepath = path.resolve('./src/produtos/produtos.json')

@@ -19,6 +19,7 @@ import { CarrinhoController } from './carrinho/carrinho.controller';
   imports: [
     CarrinhoModule,
     EmpresasModule,
+   
 
     AuthModule, ProdutosModule, UsersModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
