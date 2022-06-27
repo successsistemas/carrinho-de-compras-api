@@ -29,7 +29,10 @@ export class ProdutosService {
 	  async getProductsFromEmpresa(id: number) {
 		const db = this.DatabaseService.getConnection();
 		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = ${id}`);
+		if(rows == 0) {
+			throw Error(`Empresa com o ID '${id}' não encontrado.`);
+		}	
 		return rows;
-	  }
+	}
   
 }
