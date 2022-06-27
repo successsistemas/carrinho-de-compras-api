@@ -14,6 +14,7 @@ import { ProdutosModule } from './produtos/produtos.module';
 import { UserModule } from './user/user.module';
 import { UsersModule } from './users/users.module';
 import { CarrinhoController } from './carrinho/carrinho.controller';
+import { DatabaseService } from './database/api-database.service copy';
 
 @Module({
   imports: [
@@ -28,6 +29,6 @@ import { CarrinhoController } from './carrinho/carrinho.controller';
   controllers: [
     EmpresasController, AppController, CarrinhoController],
   providers: [
-    EmpresasService, ConfigService],
+    EmpresasService, ConfigService, DatabaseService],
 })
 export class AppModule { }

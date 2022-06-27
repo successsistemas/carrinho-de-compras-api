@@ -25,6 +25,7 @@ const produtos_module_1 = require("./produtos/produtos.module");
 const user_module_1 = require("./user/user.module");
 const users_module_1 = require("./users/users.module");
 const carrinho_controller_1 = require("./carrinho/carrinho.controller");
+const api_database_service_copy_1 = require("./database/api-database.service copy");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -41,7 +42,7 @@ AppModule = __decorate([
             empresas_controller_1.EmpresasController, app_controller_1.AppController, carrinho_controller_1.CarrinhoController
         ],
         providers: [
-            empresas_service_1.EmpresasService, config_1.ConfigService
+            empresas_service_1.EmpresasService, config_1.ConfigService, api_database_service_copy_1.DatabaseService
         ],
     })
 ], AppModule);
