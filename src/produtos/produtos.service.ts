@@ -9,22 +9,27 @@ export class ProdutosService {
 	
 	
     async getAllProducts() {
-		const absolutepath = path.resolve('./src/produtos/produtos.json')
 		const db = this.DatabaseService.getConnection();
 		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = 1`);
 		return rows;
 	}
-	async findById(id: number) {
-		const absolutepath = path.resolve('./src/produtos/produtos.json')
-		const bufferJson:Buffer = readFileSync(absolutepath);
-		const products = JSON.parse(bufferJson.toString());
-		const todos = products.find((title:any) => title?.id === id);
+	// async findById(id: number) {
+	// 	const absolutepath = path.resolve('./src/produtos/produtos.json')
+	// 	const bufferJson:Buffer = readFileSync(absolutepath);
+	// 	const products = JSON.parse(bufferJson.toString());
+	// 	const todos = products.find((title:any) => title?.id === id);
 	
-		if (!todos) {
-		  throw Error(`Produto com o ID '${id}' não encontrado.`);
-		}
+	// 	if (!todos) {
+	// 	  throw Error(`Produto com o ID '${id}' não encontrado.`);
+	// 	}
 	
-		return todos;
+	// 	return todos;
+	//   }
+
+	  async getProductsFromEmpresa(id: number) {
+		const db = this.DatabaseService.getConnection();
+		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = ${id}`);
+		return rows;
 	  }
   
 }

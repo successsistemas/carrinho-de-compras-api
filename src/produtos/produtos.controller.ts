@@ -11,7 +11,7 @@ export class ProdutosController {
   
 	@Get('produtos/:id')
 	findProductsById(@Param('id', ParseIntPipe) id:any) {
-	  return this.ProdutosService.findById(id).catch((e:any) => {
+	  return this.ProdutosService.getProductsFromEmpresa(id).catch((e:any) => {
 		throw new NotFoundException(e.message);
 	  });
 	}
