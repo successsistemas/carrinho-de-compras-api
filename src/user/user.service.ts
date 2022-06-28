@@ -17,7 +17,7 @@ export class UserService {
 
 	async getAllCarts() {
 		const db = this.DatabaseService.getConnection();
-		const [rows] = await db.raw(`SELECT produto.id, nome, image, descricao, preco FROM carrinho INNER JOIN produto_carrinho ON carrinho.usuario_id = 1 INNER JOIN produto ON produto.id = produto_carrinho.id ORDER BY preco`);
+		const [rows] = await db.raw(`SELECT produto.id, nome, image, descricao, preco from produto INNER JOIN produto_carrinho WHERE produto.id = produto_carrinho.id_produto ORDER BY preco;`);
 		return rows;
 	}
 
