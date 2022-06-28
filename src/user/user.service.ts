@@ -2,9 +2,11 @@ import { Body, Injectable } from "@nestjs/common";
 import { json } from "express";
 import { appendFileSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
+import { DatabaseService } from "src/database/api-database.service copy";
 
 @Injectable()
 export class UserService {
+	constructor(private DatabaseService: DatabaseService) {}
 
 	cart = {
 		userId: 3,
@@ -13,11 +15,10 @@ export class UserService {
 	}
 
 
-	getAllCarts() {
-		const absolutepath = path.resolve('./src/user/carrinho.json')
-		const bufferJson: Buffer = readFileSync(absolutepath);
-		const products = JSON.parse(bufferJson.toString());
-		return products;
+	async getAllCarts() {
+		const db = this.DatabaseService.getConnection();
+		const [rows] = await db.raw(`SELECT nome, image, descricao, preco FROM carrinho INNER JOIN produto_carrinho ON carrinho.usuario_id = 1 INNER JOIN produto ON produto.id = produto_carrinho.id ORDER BY preco`);
+		return rows;
 	}
 
 	async findById(id: number) {
