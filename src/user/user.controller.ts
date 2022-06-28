@@ -34,7 +34,7 @@ export class UserController {
 	}
 
 
-	@Post('cart/1/:idProduct')
+	@Post('cart/:idUser/:idProduct')
 	async addProductToCart(@Param('idProduct', ParseIntPipe) id:any) {
 		return this.UserService.postToCart(id).catch((e: any) => {
 			throw new NotFoundException("Produto já adicionado!");
