@@ -47,7 +47,7 @@ export class UserService {
 	async removeItemFromCart(params: any) {
 		const db = this.DatabaseService.getConnection();
 		console.log(params)
-		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE produto_carrinho.id = ${params.idProduct}`);
+		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE id_produto = ${params.idProduct}`);
 		return rows;
 	}
 
