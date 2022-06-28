@@ -59,18 +59,11 @@ export class UserService {
 	}
 
 	async removeItemFromCart(params: any) {
-		let novalIstaProdutos: any = []
-		let carrinho = []
-		const absolutepath = path.resolve('./src/user/carrinho.json');
-		const carrinhObj: Buffer = readFileSync(absolutepath);
-		carrinho = JSON.parse(carrinhObj.toString());
-		carrinho.products = carrinho.products.filter(function (produto: any) {
-			return produto.productId !== Number.parseInt(params.idProduct);
-		})
-
-		writeFileSync(absolutepath, JSON.stringify(carrinho, null, 5), 'utf8');
-
-		return carrinho;
-
+		const db = this.DatabaseService.getConnection();
+		console.log(params)
+		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE produto_carrinho.id = ${params.idProduct}`);
+		return rows;
 	}
+		
+
 }
