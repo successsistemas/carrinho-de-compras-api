@@ -6,7 +6,7 @@ import { DatabaseService } from "src/database/api-database.service copy";
 
 @Injectable()
 export class UserService {
-	constructor(private DatabaseService: DatabaseService) {}
+	constructor(private DatabaseService: DatabaseService) { }
 
 	cart = {
 		userId: 3,
@@ -35,28 +35,14 @@ export class UserService {
 		return todos;
 	}
 
-	async postToCart(body: any) {
-		
-		const produto: any = {
-			url: body.produtoimage,
-			title: body.productname,
-			productId: body.productId,
-			price: body.productprice
-		}
-		
-		let carrinho = []
-		
+	async postToCart(params: any) {
+		const db = this.DatabaseService.getConnection();
+		console.log(params)
+		const [rows] = await db.raw(`INSERT INTO produto_carrinho VALUES(default, 1, ${params});`);
+		return rows;
 
-		const absolutepath = path.resolve('./src/user/carrinho.json')
-		const carrinhObj: Buffer = readFileSync(absolutepath);
-		carrinho = JSON.parse(carrinhObj.toString())
-
-		carrinho.products.push(produto);
-
-
-		writeFileSync(absolutepath, JSON.stringify(carrinho, null, 5), 'utf8');
-		return carrinho;
 	}
+
 
 	async removeItemFromCart(params: any) {
 		const db = this.DatabaseService.getConnection();
@@ -64,6 +50,6 @@ export class UserService {
 		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE produto_carrinho.id = ${params.idProduct}`);
 		return rows;
 	}
-		
+
 
 }

@@ -34,14 +34,11 @@ export class UserController {
 	}
 
 
-	@Post('cart/:userId/:cartId')
-	async addProductToCart(@Query('userId/cartId') query: any, @Body() body: any) {
-		try {
-			await this.UserService.postToCart(body);
-			return { msg: "sucesso" }
-		} catch (e: any) {
-			return { msg: "error:" + e.message }
-		}
+	@Post('cart/1/:idProduct')
+	async addProductToCart(@Param('idProduct', ParseIntPipe) id:any) {
+		return this.UserService.postToCart(id).catch((e: any) => {
+			throw new NotFoundException("Produto já adicionado!");
+		});
 
 
 	}
