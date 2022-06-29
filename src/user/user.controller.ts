@@ -1,46 +1,19 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
-import e from "express";
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { UserService } from "./user.service";
 @Controller("user")
 export class UserController {
 	constructor(private UserService: UserService) { }
 
-	//variavel simulando o banco, ela vai ficar aqui até a aplicação ser encerrada, fora isso os valores vão continuar
-	cart = {
-		userId: 3,
-		date: "2019 - 12 - 10",
-		products: [{
-			url: 'teste',
-			title: 'testes',
-			productId: 21,
-			quantity: 3
-		}]
-	}
-
-	@Get('cart')
-	getUserCart(@Body() body: string) {
-
-		return this.UserService.getAllCarts();
-
-	}
-
-
-
 	@Get('cart/:userId')
-	getAllCartsByUserId(@Param('userId', ParseIntPipe) id: any) {
-		return this.UserService.findById(id).catch((e: any) => {
-			throw new NotFoundException(e.message);
-		});
+	getUserCart(@Param('userId', ParseIntPipe) idUsuario: number) {
+		return this.UserService.getAllProducts(idUsuario);
 	}
 
-
-	@Post('cart/:idUser/:idProduct')
-	async addProductToCart(@Param('idProduct', ParseIntPipe) id:any) {
+	@Post('cart/:userId/:idProduct')
+	async addProductToCart(@Param('idProduct', ParseIntPipe) id: any) {
 		return this.UserService.postToCart(id).catch((e: any) => {
-			throw new NotFoundException("Produto já adicionado!");
+			throw new NotFoundException("Este produto já foi adicionado ao carrinho!");
 		});
-
-
 	}
 
 	@Delete('removerproduto/:userId/:idProduct')

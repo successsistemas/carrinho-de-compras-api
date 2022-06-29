@@ -1,6 +1,5 @@
-import { Body, Injectable } from "@nestjs/common";
-import { json } from "express";
-import { appendFileSync, readFileSync, writeFileSync } from "fs";
+import { Injectable } from "@nestjs/common";
+import { readFileSync } from "fs";
 import path from "path";
 import { DatabaseService } from "src/database/api-database.service copy";
 
@@ -8,16 +7,9 @@ import { DatabaseService } from "src/database/api-database.service copy";
 export class UserService {
 	constructor(private DatabaseService: DatabaseService) { }
 
-	cart = {
-		userId: 3,
-		date: "2019 - 12 - 10",
-		products: [{}]
-	}
-
-
-	async getAllCarts() {
+	async getAllProducts(idUsuario: number) {
 		const db = this.DatabaseService.getConnection();
-		const [rows] = await db.raw(`SELECT id_produto, nome AS nome_produto, produto.image AS image_produto, descricao AS descricao_produto, preco AS preco_produto, empresa.id AS id_empresa, empresa.title AS nome_empresa, empresa.cnpj AS cnpj_empresa, empresa.phone AS phone_empresa, idcarrinho AS id_carrinho, usuario_id, produto_carrinho.id AS id_produto_carrinho, empresa_id FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.carrinho_idcarrinho = 1 INNER JOIN produto ON produto.id = produto_carrinho.id_produto INNER JOIN empresa ON empresa.id = produto.empresa_id`);
+		const [rows] = await db.raw(`SELECT id_produto, marcado, nome AS nome_produto, produto.image AS image_produto, descricao AS descricao_produto, preco AS preco_produto, empresa.id AS id_empresa, empresa.title AS nome_empresa, empresa.cnpj AS cnpj_empresa, empresa.phone AS phone_empresa, idcarrinho AS id_carrinho, usuario_id, produto_carrinho.id AS id_produto_carrinho, empresa_id FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.carrinho_idcarrinho = ${idUsuario} INNER JOIN produto ON produto.id = produto_carrinho.id_produto INNER JOIN empresa ON empresa.id = produto.empresa_id`);
 		return rows;
 	}
 
@@ -35,10 +27,9 @@ export class UserService {
 		return todos;
 	}
 
-	async postToCart(params: any) {
+	async postToCart(idProduct: any) {
 		const db = this.DatabaseService.getConnection();
-		console.log(params)
-		const [rows] = await db.raw(`INSERT INTO produto_carrinho VALUES(default, 1, ${params});`);
+		const [rows] = await db.raw(`INSERT INTO produto_carrinho VALUES(default, 1, ${idProduct}, 0)`);
 		return rows;
 
 	}
@@ -46,7 +37,6 @@ export class UserService {
 
 	async removeItemFromCart(params: any) {
 		const db = this.DatabaseService.getConnection();
-		console.log(params)
 		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE id_produto = ${params.idProduct}`);
 		return rows;
 	}
