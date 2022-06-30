@@ -25,4 +25,13 @@ export class UserController {
 			return { msg: "error:" + e.message }
 		}
 	}
+	@Delete('clearcart/:userId')
+	async clearCart(@Param() params: any) {
+		try {
+			await this.UserService.clearCart(params)
+			return { msg: "sucesso" }
+		} catch (e: any) {
+			return { msg: "error:" + e.message }
+		}
+	}
 }

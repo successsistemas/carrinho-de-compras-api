@@ -41,5 +41,11 @@ export class UserService {
 		return rows;
 	}
 
+	async clearCart(params:any) {
+		const db = this.DatabaseService.getConnection();
+		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE carrinho_idcarrinho = 1`);
+		return rows;
+	
+	}
 
 }
