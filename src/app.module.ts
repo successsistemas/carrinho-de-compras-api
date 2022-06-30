@@ -1,3 +1,6 @@
+import { PedidosModule } from './user/pedidos/pedidos.module';
+import { PedidosController } from './user/pedidos/pedidos.controller';
+import { PedidosService } from './user/pedidos/pedidos.service';
 import { CarrinhoModule } from './carrinho/carrinho.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { EmpresasService } from './empresas/empresas.service';
@@ -18,17 +21,20 @@ import { DatabaseService } from './database/api-database.service copy';
 
 @Module({
   imports: [
+    PedidosModule,
     CarrinhoModule,
     EmpresasModule,
-   
+
 
     AuthModule, ProdutosModule, UsersModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],
   controllers: [
+    PedidosController,
     EmpresasController, AppController, CarrinhoController],
   providers: [
+    PedidosService,
     EmpresasService, ConfigService, DatabaseService],
 })
 export class AppModule { }

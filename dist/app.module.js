@@ -10,6 +10,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const pedidos_module_1 = require("./user/pedidos/pedidos.module");
+const pedidos_controller_1 = require("./user/pedidos/pedidos.controller");
+const pedidos_service_1 = require("./user/pedidos/pedidos.service");
 const carrinho_module_1 = require("./carrinho/carrinho.module");
 const empresas_module_1 = require("./empresas/empresas.module");
 const empresas_service_1 = require("./empresas/empresas.service");
@@ -31,6 +34,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            pedidos_module_1.PedidosModule,
             carrinho_module_1.CarrinhoModule,
             empresas_module_1.EmpresasModule,
             auth_module_1.AuthModule, produtos_module_1.ProdutosModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, user_module_1.UserModule, config_1.ConfigModule.forRoot({
@@ -39,9 +43,11 @@ AppModule = __decorate([
             })
         ],
         controllers: [
+            pedidos_controller_1.PedidosController,
             empresas_controller_1.EmpresasController, app_controller_1.AppController, carrinho_controller_1.CarrinhoController
         ],
         providers: [
+            pedidos_service_1.PedidosService,
             empresas_service_1.EmpresasService, config_1.ConfigService, api_database_service_copy_1.DatabaseService
         ],
     })
