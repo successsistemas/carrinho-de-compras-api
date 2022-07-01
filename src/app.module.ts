@@ -15,6 +15,7 @@ import { PedidosController } from './pedidos/pedidos.controller';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { PedidoService } from './pedidos/pedidos.service';
 import { ProdutosModule } from './produtos/produtos.module';
+
 import { UserModule } from './user/user.module';
 
 @Module({
