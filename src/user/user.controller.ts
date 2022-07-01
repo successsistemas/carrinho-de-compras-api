@@ -20,7 +20,7 @@ export class UserController {
 	async removerProdutodoCart(@Param() params: any) {
 		try {
 			await this.UserService.removeItemFromCart(params)
-			return { msg: "sucesso" }
+			return { msg: "sucesso!" }
 		} catch (e: any) {
 			return { msg: "error:" + e.message }
 		}
@@ -32,6 +32,7 @@ export class UserController {
 			return { msg: "sucesso" }
 		} catch (e: any) {
 			return { msg: "error:" + e.message }
+			
 		}
 	}
 }
