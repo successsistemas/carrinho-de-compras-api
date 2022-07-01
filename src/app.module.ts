@@ -1,22 +1,21 @@
-import { PedidosModule } from './user/pedidos/pedidos.module';
-import { PedidosController } from './user/pedidos/pedidos.controller';
-import { PedidosService } from './user/pedidos/pedidos.service';
-import { CarrinhoModule } from './carrinho/carrinho.module';
-import { EmpresasModule } from './empresas/empresas.module';
-import { EmpresasService } from './empresas/empresas.service';
-import { EmpresasController } from './empresas/empresas.controller';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
+import { CarrinhoController } from './carrinho/carrinho.controller';
+import { CarrinhoModule } from './carrinho/carrinho.module';
 import configuracao from './config/configuracao';
-import { CriptoController } from './cripto/cripto.controller';
 import { CriptoModule } from './cripto/cripto.module';
+import { DatabaseService } from './database/api-database.service copy';
 import { DatabaseModule } from './database/database.module';
+import { EmpresasController } from './empresas/empresas.controller';
+import { EmpresasModule } from './empresas/empresas.module';
+import { EmpresasService } from './empresas/empresas.service';
+import { PedidosController } from './pedidos/pedidos.controller';
+import { PedidosModule } from './pedidos/pedidos.module';
+import { PedidoService } from './pedidos/pedidos.service';
 import { ProdutosModule } from './produtos/produtos.module';
 import { UserModule } from './user/user.module';
-import { CarrinhoController } from './carrinho/carrinho.controller';
-import { DatabaseService } from './database/api-database.service copy';
 
 @Module({
   imports: [
@@ -25,7 +24,7 @@ import { DatabaseService } from './database/api-database.service copy';
     EmpresasModule,
 
 
-    AuthModule, ProdutosModule,  CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
+    AuthModule, ProdutosModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],
@@ -33,7 +32,7 @@ import { DatabaseService } from './database/api-database.service copy';
     PedidosController,
     EmpresasController, AppController, CarrinhoController],
   providers: [
-    PedidosService,
+    PedidoService,
     EmpresasService, ConfigService, DatabaseService],
 })
 export class AppModule { }
