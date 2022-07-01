@@ -1,6 +1,6 @@
 import { PedidosModule } from './user/pedidos/pedidos.module';
 import { PedidosController } from './user/pedidos/pedidos.controller';
-import { PedidosService } from './user/pedidos/pedidos.service';
+import { PedidoService } from './user/pedidos/pedidos.service';
 import { CarrinhoModule } from './carrinho/carrinho.module';
 import { EmpresasModule } from './empresas/empresas.module';
 import { EmpresasService } from './empresas/empresas.service';
@@ -34,7 +34,7 @@ import { DatabaseService } from './database/api-database.service copy';
     PedidosController,
     EmpresasController, AppController, CarrinhoController],
   providers: [
-    PedidosService,
+    PedidoService,
     EmpresasService, ConfigService, DatabaseService],
 })
 export class AppModule { }

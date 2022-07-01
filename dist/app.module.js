@@ -47,7 +47,7 @@ AppModule = __decorate([
             empresas_controller_1.EmpresasController, app_controller_1.AppController, carrinho_controller_1.CarrinhoController
         ],
         providers: [
-            pedidos_service_1.PedidosService,
+            pedidos_service_1.PedidoService,
             empresas_service_1.EmpresasService, config_1.ConfigService, api_database_service_copy_1.DatabaseService
         ],
     })
