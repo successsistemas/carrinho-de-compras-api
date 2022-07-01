@@ -1,7 +1,7 @@
 import { JwtService } from '@nestjs/jwt';
 import { CriptoService } from 'src/cripto/cripto.service';
 import { DatabaseService } from 'src/database/api-database.service copy';
-import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto, LoginGoogleDto } from 'src/users/Users';
+import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto, LoginGoogleDto } from 'src/types/types';
 export declare class AuthService {
     private DatabaseService;
     private readonly cripto;

@@ -26,7 +26,6 @@ const cripto_module_1 = require("./cripto/cripto.module");
 const database_module_1 = require("./database/database.module");
 const produtos_module_1 = require("./produtos/produtos.module");
 const user_module_1 = require("./user/user.module");
-const users_module_1 = require("./users/users.module");
 const carrinho_controller_1 = require("./carrinho/carrinho.controller");
 const api_database_service_copy_1 = require("./database/api-database.service copy");
 let AppModule = class AppModule {
@@ -37,7 +36,7 @@ AppModule = __decorate([
             pedidos_module_1.PedidosModule,
             carrinho_module_1.CarrinhoModule,
             empresas_module_1.EmpresasModule,
-            auth_module_1.AuthModule, produtos_module_1.ProdutosModule, users_module_1.UsersModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, user_module_1.UserModule, config_1.ConfigModule.forRoot({
+            auth_module_1.AuthModule, produtos_module_1.ProdutosModule, cripto_module_1.CriptoModule, database_module_1.DatabaseModule, user_module_1.UserModule, config_1.ConfigModule.forRoot({
                 load: [configuracao_1.default],
                 isGlobal: true
             })

@@ -1,5 +1,5 @@
 import { AuthService } from './auth/auth.service';
-import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto } from './users/Users';
+import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto } from './types/types';
 export declare class AppController {
     private authService;
     constructor(authService: AuthService);

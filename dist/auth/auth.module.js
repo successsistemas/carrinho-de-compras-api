@@ -10,7 +10,6 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const local_strategy_1 = require("./local.strategy");
-const users_module_1 = require("../users/users.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const constants_1 = require("./constants");
@@ -25,7 +24,6 @@ AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
             cripto_module_1.CriptoModule,
-            users_module_1.UsersModule,
             database_module_1.DatabaseModule,
             passport_1.PassportModule,
             jwt_1.JwtModule.register({

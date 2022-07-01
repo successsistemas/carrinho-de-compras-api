@@ -15,7 +15,6 @@ import { CriptoModule } from './cripto/cripto.module';
 import { DatabaseModule } from './database/database.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { UserModule } from './user/user.module';
-import { UsersModule } from './users/users.module';
 import { CarrinhoController } from './carrinho/carrinho.controller';
 import { DatabaseService } from './database/api-database.service copy';
 
@@ -26,7 +25,7 @@ import { DatabaseService } from './database/api-database.service copy';
     EmpresasModule,
 
 
-    AuthModule, ProdutosModule, UsersModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
+    AuthModule, ProdutosModule,  CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],

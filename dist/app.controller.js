@@ -17,7 +17,7 @@ const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth/auth.service");
 const jwt_auth_guard_1 = require("./auth/jwt-auth-guard");
-const Users_1 = require("./users/Users");
+const types_1 = require("./types/types");
 let AppController = class AppController {
     constructor(authService) {
         this.authService = authService;
@@ -50,7 +50,7 @@ __decorate([
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Users_1.LoginDto]),
+    __metadata("design:paramtypes", [types_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "login", null);
 __decorate([
@@ -75,7 +75,7 @@ __decorate([
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Users_1.CadastroDto]),
+    __metadata("design:paramtypes", [types_1.CadastroDto]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "adicionar", null);
 __decorate([
@@ -83,7 +83,7 @@ __decorate([
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Users_1.CadastroGoogleDto]),
+    __metadata("design:paramtypes", [types_1.CadastroGoogleDto]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "cadastroGoogle", null);
 __decorate([
@@ -91,7 +91,7 @@ __decorate([
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Users_1.DadosRestantesGoogleDto]),
+    __metadata("design:paramtypes", [types_1.DadosRestantesGoogleDto]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "cadastroDadosRestantesGoogle", null);
 __decorate([
