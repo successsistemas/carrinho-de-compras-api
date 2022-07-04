@@ -28,7 +28,7 @@ export class ProdutosService {
 
 	  async getProductsFromEmpresa(id: number) {
 		const db = this.DatabaseService.getConnection();
-		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = ${id}`);
+		const [rows] = await db.raw(`SELECT * FROM produto WHERE produto.empresa_id = ${id} ORDER BY preco`);
 		if(rows == 0) {
 			throw Error(`Produtos da empresa com o ID '${id}' não foram encontrados.`);
 		}	

@@ -9,7 +9,7 @@ export class UserService {
 
 	async getAllProducts(idUsuario: number) {
 		const db = this.DatabaseService.getConnection();
-		const [rows] = await db.raw(`SELECT id_produto, marcado, nome AS nome_produto, produto.image AS image_produto, descricao AS descricao_produto, preco AS preco_produto, empresa.id AS id_empresa, empresa.title AS nome_empresa, empresa.cnpj AS cnpj_empresa, empresa.phone AS phone_empresa, idcarrinho AS id_carrinho, usuario_id, produto_carrinho.id AS id_produto_carrinho, empresa_id FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.carrinho_idcarrinho = ${idUsuario} INNER JOIN produto ON produto.id = produto_carrinho.id_produto INNER JOIN empresa ON empresa.id = produto.empresa_id`);
+		const [rows] = await db.raw(`SELECT id_produto, marcado, nome AS nome_produto, produto.image AS image_produto, descricao AS descricao_produto, preco AS preco_produto, empresa.id AS id_empresa, empresa.title AS nome_empresa, empresa.cnpj AS cnpj_empresa, empresa.phone AS phone_empresa, idcarrinho AS id_carrinho, usuario_id, produto_carrinho.id AS id_produto_carrinho, empresa_id FROM carrinho INNER JOIN produto_carrinho ON produto_carrinho.carrinho_idcarrinho = ${idUsuario} INNER JOIN produto ON produto.id = produto_carrinho.id_produto INNER JOIN empresa ON empresa.id = produto.empresa_id ORDER BY preco_produto`);
 		return rows;
 	}
 
