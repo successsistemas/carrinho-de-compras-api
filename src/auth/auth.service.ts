@@ -15,7 +15,6 @@ export class AuthService {
 
   async login(body: LoginDto): Promise<any> {
     const senha = body.senha
-    console.log(body.email)
     console.log("Usuário logado com sucesso!")
     return senha
   }
@@ -59,7 +58,6 @@ export class AuthService {
     const db = this.DatabaseService.getConnection();
     console.log('Usuário adicionado com sucesso!')
     const [rows] = await db.raw(`INSERT INTO usuario (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`)
-    console.log(rows.affectedRows)
     if (rows.affectedRows > 0) {
       return {access_token: this.jwtService.sign({})
     }
