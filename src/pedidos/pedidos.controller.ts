@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { PedidoService } from './pedidos.service';
 
 @Controller('pedido')
@@ -14,11 +14,14 @@ export class PedidosController {
 		return this.pedidoService.getItensPedido();
 	}
 	@Post()
-	criarPedido() {
-
+	criarPedido(@Body() body:any) {
+		console.log(body)
+		 return this.pedidoService.confirmarPedido(body);
 	}
 	@Patch()
 	atualizarPedido() {
 		this.atualizarPedido();
 	}
+	
+	
 }

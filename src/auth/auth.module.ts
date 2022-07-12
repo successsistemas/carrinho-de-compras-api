@@ -1,20 +1,19 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LocalStrategy } from './local.strategy';
-import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
-import { JwtStrategy } from './jwt.strategy';
-import { DatabaseService } from 'src/database/api-database.service copy';
-import { DatabaseModule } from 'src/database/database.module';
+import { PassportModule } from '@nestjs/passport';
 import { CriptoModule } from 'src/cripto/cripto.module';
 import { CriptoService } from 'src/cripto/cripto.service';
+import { DatabaseService } from 'src/database/api-database.service copy';
+import { DatabaseModule } from 'src/database/database.module';
+import { AuthService } from './auth.service';
+import { jwtConstants } from './constants';
+import { JwtStrategy } from './jwt.strategy';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
     CriptoModule,
-  
     DatabaseModule,
     PassportModule,
     JwtModule.register({
@@ -25,4 +24,4 @@ import { CriptoService } from 'src/cripto/cripto.service';
   providers: [AuthService, LocalStrategy, JwtStrategy, DatabaseService, CriptoService],
   exports: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule { }

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import knexFn, { Knex } from 'knex';
-import { jwtConstants } from 'src/auth/constants';
 
 @Injectable()
 export class SuccessDatabaseService {
