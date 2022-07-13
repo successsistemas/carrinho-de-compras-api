@@ -23,7 +23,7 @@ export class PedidoService {
 	}
 	async getItensPedido() {
 		const knext = this.databaseService.getConnection();
-		const [itensDoPedido] = await knext.raw(`SELECT A.id_pedido, A.usuario_id, A.empresa_id, A.status_pedido, A.created_at, A.updated_at, A.valor_total, A.forma_pagamento FROM pedidos AS A order by created_at DESC`
+		const [itensDoPedido] = await knext.raw(`SELECT A.id_pedido, A.usuario_id, A.empresa_id, A.status_pedido, DATE_FORMAT(created_at, " %d/%m/%y") AS data_pedido,  DATE_FORMAT(created_at, "%H:%i:%s") AS hora_pedido, A.updated_at, A.valor_total, A.forma_pagamento FROM pedidos AS A order by created_at DESC`
 			// `
 			// 		SELECT 
 			// 		A.id_pedido,
