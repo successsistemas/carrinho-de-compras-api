@@ -1,13 +1,13 @@
 export type Product = {
-    url: string,
-    title: string,
-    productId: number,
-    quantity: number
-  }
+  url: string,
+  title: string,
+  productId: number,
+  quantity: number
+}
 
 
 export class UsersDto {
-  
+
   email: string;
   senha: string;
 }
@@ -19,7 +19,7 @@ export class CadastroDto {
   cidade: string;
   rua: string;
   bairro: string;
-  cep:string;
+  cep: string;
   numero_endereco: string;
   email: string;
   senha: string;

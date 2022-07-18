@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Request, Post, UseGuards, Body, Get } from '@nestjs/common';
+import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
 import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto } from './types/types';

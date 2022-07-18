@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post } from "@nestjs/common";
+import { Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { UserService } from "./user.service";
 @Controller("user")
 export class UserController {
@@ -32,7 +32,7 @@ export class UserController {
 			return { msg: "sucesso" }
 		} catch (e: any) {
 			return { msg: "error:" + e.message }
-			
+
 		}
 	}
 }
