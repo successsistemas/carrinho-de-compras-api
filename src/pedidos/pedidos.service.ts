@@ -52,12 +52,12 @@ export class PedidoService {
 		)
 		return itensDoPedido;
 	}
-	async confirmarPedido(body:any) {
+	async confirmarPedido(body: any) {
 		const db = this.databaseService.getConnection();
-		
+
 		const [rows] = await db.raw(`INSERT INTO pedidos (usuario_id, empresa_id, status_pedido, valor_total, forma_pagamento) VALUES(1, 1, 1, ${body.somaitens}, '${body.paymentmethod}')`);
 		return rows;
-		
+
 	}
 
 }
