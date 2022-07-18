@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { readFileSync } from 'fs';
-import path from 'path';
 import { DatabaseService } from 'src/database/api-database.service copy';
 
 @Injectable()
