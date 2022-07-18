@@ -14,7 +14,6 @@ export class ProdutosService {
 		return rows;
 	}
 
-	
 
 	async getProductsFromEmpresa(id: number) {
 		const db = this.DatabaseService.getConnection();
