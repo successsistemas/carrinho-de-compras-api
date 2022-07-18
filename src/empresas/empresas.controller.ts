@@ -13,11 +13,6 @@ export class EmpresasController {
 		const result = this.EmpresasService.getAllEmpresas()
 		return result;
 	}
-	@Get('/:id')
-	findProductsById(@Param('id', ParseIntPipe) id:any) {
-	  return this.EmpresasService.findById(id).catch((e:any) => {
-		throw new NotFoundException(e.message);
-	  });
-	}
+	
     }
 
