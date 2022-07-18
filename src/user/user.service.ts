@@ -1,6 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { readFileSync } from "fs";
-import path from "path";
 import { DatabaseService } from "src/database/api-database.service copy";
 
 @Injectable()
@@ -13,19 +11,6 @@ export class UserService {
 		return rows;
 	}
 
-	async findById(id: number) {
-		const absolutepath = path.resolve('./src/user/carrinho.json')
-		const bufferJson: Buffer = readFileSync(absolutepath);
-		const carts: [] = JSON.parse(bufferJson.toString());
-		const todos = carts.find((json: any) => json?.userid === id);
-
-
-		if (!todos) {
-			throw Error(`Produto com o ID '${id}' não encontrado.`);
-		}
-
-		return todos;
-	}
 
 	async postToCart(idProduct: any) {
 		const db = this.DatabaseService.getConnection();
@@ -41,11 +26,11 @@ export class UserService {
 		return rows;
 	}
 
-	async clearCart(params:any) {
+	async clearCart(params: any) {
 		const db = this.DatabaseService.getConnection();
 		const [rows] = await db.raw(`DELETE FROM produto_carrinho WHERE carrinho_idcarrinho = 1`);
 		return rows;
-	
+
 	}
 
 }
