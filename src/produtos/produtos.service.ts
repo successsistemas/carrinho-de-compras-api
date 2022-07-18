@@ -14,18 +14,7 @@ export class ProdutosService {
 		return rows;
 	}
 
-	async findById(id: number) {
-		const absolutepath = path.resolve('./src/produtos/produtos.json')
-		const bufferJson: Buffer = readFileSync(absolutepath);
-		const products = JSON.parse(bufferJson.toString());
-		const todos = products.find((title: any) => title?.id === id);
-
-		if (!todos) {
-			throw Error(`Produto com o ID '${id}' não encontrado.`);
-		}
-
-		return todos;
-	}
+	
 
 	async getProductsFromEmpresa(id: number) {
 		const db = this.DatabaseService.getConnection();

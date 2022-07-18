@@ -6,7 +6,6 @@ export class PedidosController {
 	constructor(private pedidoService: PedidoService) { }
 	@Get('todos')
 	getPedido(@Query('id-usuario') nome: number) {
-		console.log(nome)
 		this.pedidoService.getPedidos();
 	}
 	@Get('itens')
