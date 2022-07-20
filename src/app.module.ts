@@ -15,7 +15,7 @@ import { PedidosController } from './pedidos/pedidos.controller';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { PedidoService } from './pedidos/pedidos.service';
 import { ProdutosModule } from './produtos/produtos.module';
-
+import { MailerModule } from '@nestjs-modules/mailer';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -25,10 +25,29 @@ import { UserModule } from './user/user.module';
     EmpresasModule,
 
 
-    AuthModule, ProdutosModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
+    AuthModule,
+    MailerModule.forRootAsync({
+      useFactory: async () => {
+        return {
+          transport: {
+            host: 'mail.success.inf.br',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: 'automatico@success.inf.br',
+              pass: 'gersuc1987', // generated ethereal password
+            },
+            ignoreTLS: true,
+          },
+          preview: true,
+        }
+      },
+    }),
+    ProdutosModule, CriptoModule, DatabaseModule, UserModule, ConfigModule.forRoot({
       load: [configuracao],
       isGlobal: true
     })],
+
   controllers: [
     PedidosController,
     EmpresasController, AppController, CarrinhoController],

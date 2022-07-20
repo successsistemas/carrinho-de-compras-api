@@ -15,7 +15,6 @@ export class AuthService {
 
   async login(body: LoginDto): Promise<any> {
     const senha = body.senha
-    console.log("Usuário logado com sucesso!")
     return senha
   }
 
@@ -24,49 +23,54 @@ export class AuthService {
     const cifra = await this.login(body)
     const encode = await this.cripto.publicEncript(cifra, chave)
     const db = this.DatabaseService.getConnection();
+    console.log(body)
+    console.log(encode)
     const [rows] = await db.raw(`select email, senha from usuario where email ='${body.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
-        return {access_token: this.jwtService.sign({})
-        }    
+      return {
+        access_token: this.jwtService.sign({})
+      }
 
     }
     throw new UnauthorizedException("Senha incorreta!");
   }
-  
+
   async loginGoogle(body: LoginGoogleDto) {
     const db = this.DatabaseService.getConnection();
-    console.log('Usuário logado com sucesso!')
+    console.log(body.body.response.profileObj)
     const [rows] = await db.raw(`SELECT senha FROM usuario WHERE senha = '${body.body.response.profileObj.googleId}' `)
     if (rows.length > 0) {
-      return {access_token: this.jwtService.sign({})
-    }    
+      return {
+        access_token: this.jwtService.sign({})
+      }
 
     }
     throw new UnauthorizedException("Não foi possível fazer o login");
-  } 
-  
+  }
+
   async cadastrar(body: CadastroDto) {
     const db = this.DatabaseService.getConnection();
     const cifra = body.data.senha;
     const chave = 'criptografia';
     const encode = await this.cripto.publicEncript(cifra, chave)
     console.log('Usuário adicionado com sucesso!')
-    return await db.schema.raw(`INSERT INTO usuario (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}')`)
+    return await db.schema.raw(`INSERT INTO usuario (nome, email, senha, cpf, estado, cidade, rua, bairro, cep, numero_endereco, conta_google) VALUES ('${body.data.nome}', '${body.data.email}', '${encode}', '${body.data.cpf}', '${body.data.estado}', '${body.data.cidade}', '${body.data.rua}', '${body.data.bairro}', '${body.data.cep}', '${body.data.numero}', '0')`)
   }
 
   async cadastroGoogle(body: CadastroGoogleDto) {
     const db = this.DatabaseService.getConnection();
     console.log('Usuário adicionado com sucesso!')
-    const [rows] = await db.raw(`INSERT INTO usuario (nome, email, senha) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}')`)
+    const [rows] = await db.raw(`INSERT INTO usuario (nome, email, senha, conta_google) VALUES ('${body.response.profileObj.name}', '${body.response.profileObj.email}', '${body.response.profileObj.googleId}', '1')`)
     if (rows.affectedRows > 0) {
-      return {access_token: this.jwtService.sign({})
+      return {
+        access_token: this.jwtService.sign({})
+      }
     }
-  }
     else
-    throw new UnauthorizedException("Não foi possível fazer o cadastro");
-        
+      throw new UnauthorizedException("Não foi possível fazer o cadastro");
+
   }
-    
+
 
   async cadastroDadosRestantesGoogle(data: DadosRestantesGoogleDto) {
     const db = this.DatabaseService.getConnection();
@@ -77,5 +81,24 @@ export class AuthService {
     const db = this.DatabaseService.getConnection();
     console.log('Nome encontrado com sucesso!')
     return await db.schema.raw(`SELECT nome from usuario where email = '${data.data.email}' `)
+  }
+
+  async verificarConta(body: any) {
+
+    const db = this.DatabaseService.getConnection();
+    const [rows] = await db.raw(`SELECT conta_google FROM usuario WHERE email = '${body.emailrecuperacao}' `)
+    if (rows?.[0]?.conta_google === 1) {
+      throw new UnauthorizedException("Não será possível alterar a senha desse email");
+    }
+  }
+
+  async alterarSenha(data: any) {
+    const db = this.DatabaseService.getConnection();
+    const chave = 'criptografia';
+    const cifra = await (data.password)
+    console.log("Data password", cifra)
+    const encode = await this.cripto.publicEncript(cifra, chave)
+    console.log(data)
+    return await db.schema.raw(`UPDATE usuario set senha = '${encode}' where email = '${data.emailuser}' `)
   }
 }
