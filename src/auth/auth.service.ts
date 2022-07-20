@@ -23,8 +23,6 @@ export class AuthService {
     const cifra = await this.login(body)
     const encode = await this.cripto.publicEncript(cifra, chave)
     const db = this.DatabaseService.getConnection();
-    console.log(body)
-    console.log(encode)
     const [rows] = await db.raw(`select email, senha from usuario where email ='${body.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
       return {
@@ -37,7 +35,6 @@ export class AuthService {
 
   async loginGoogle(body: LoginGoogleDto) {
     const db = this.DatabaseService.getConnection();
-    console.log(body.body.response.profileObj)
     const [rows] = await db.raw(`SELECT senha FROM usuario WHERE senha = '${body.body.response.profileObj.googleId}' `)
     if (rows.length > 0) {
       return {
@@ -96,9 +93,7 @@ export class AuthService {
     const db = this.DatabaseService.getConnection();
     const chave = 'criptografia';
     const cifra = await (data.password)
-    console.log("Data password", cifra)
     const encode = await this.cripto.publicEncript(cifra, chave)
-    console.log(data)
     return await db.schema.raw(`UPDATE usuario set senha = '${encode}' where email = '${data.emailuser}' `)
   }
 }
