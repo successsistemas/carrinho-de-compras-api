@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { MailerService } from '@nestjs-modules/mailer';
 import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
-import { error } from 'console';
-import { resolve } from 'path';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
 import { DatabaseService } from './database/api-database.service copy';
