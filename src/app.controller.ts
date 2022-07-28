@@ -15,7 +15,6 @@ export class AppController {
   ) { }
 
 
-
   @UseGuards()
   @Post('auth/login')
   async login(@Body() body: LoginDto) {
@@ -53,9 +52,9 @@ export class AppController {
 
   }
   @Post('verificarconta')
-  verificarconta(@Body() body:any) {
+  verificarconta(@Body() body: any) {
     return this.authService.verificarConta(body);
-  } 
+  }
 
 
   @Post('redefinirsenha')
@@ -74,15 +73,15 @@ export class AppController {
       }
     })
     const emailTask = await this.mailer.sendMail({
-			to: data.emailrecuperacao,
-			from: 'automatico@success.inf.br',
-			subject: 'Código de acesso do Portal Cotações Success',
-			html: createhtml(url, empresa, fornecedor),
-			text: `
+      to: data.emailrecuperacao,
+      from: 'automatico@success.inf.br',
+      subject: 'Código de acesso do Portal Cotações Success',
+      html: createhtml(url, empresa, fornecedor),
+      text: `
       Para acessar o Portal Cotações, digite o código abaixo no campo onde foi solicitado:
       teste2
       Por questões de segurança esse código expira após 10 minutos.`,
-		})
+    })
     if (rows?.[0]?.id === undefined) {
       return "Email não encontrado no sistema!"
 
@@ -90,10 +89,10 @@ export class AppController {
     else
       smtpTransport.sendMail(emailTask, (err: any) => {
       })
-    
+
     return "Email enviado com sucesso!"
   }
- 
+
   @Post('alterarsenha')
   alterarSenha(@Body() body: any) {
     return this.authService.alterarSenha(body);

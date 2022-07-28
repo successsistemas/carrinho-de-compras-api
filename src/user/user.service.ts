@@ -11,14 +11,12 @@ export class UserService {
 		return rows;
 	}
 
-
 	async postToCart(idProduct: any) {
 		const db = this.DatabaseService.getConnection();
 		const [rows] = await db.raw(`INSERT INTO produto_carrinho VALUES(default, 1, ${idProduct}, 0)`);
 		return rows;
 
 	}
-
 
 	async removeItemFromCart(params: any) {
 		const db = this.DatabaseService.getConnection();

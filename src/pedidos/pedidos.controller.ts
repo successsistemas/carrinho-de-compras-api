@@ -13,14 +13,13 @@ export class PedidosController {
 		return this.pedidoService.getItensPedido();
 	}
 	@Post()
-	criarPedido(@Body() body:any) {
-		console.log(body)
-		 return this.pedidoService.confirmarPedido(body);
+	criarPedido(@Body() body: any) {
+		return this.pedidoService.confirmarPedido(body);
 	}
 	@Patch()
 	atualizarPedido() {
 		this.atualizarPedido();
 	}
-	
-	
+
+
 }

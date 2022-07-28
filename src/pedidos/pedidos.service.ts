@@ -5,7 +5,6 @@ import { DatabaseService } from 'src/database/api-database.service copy';
 export class PedidoService {
 	constructor(public databaseService: DatabaseService) { }
 
-
 	getPedidos() {
 		const knext = this.databaseService.getConnection();
 		knext.transaction(function (trx) {

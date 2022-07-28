@@ -17,11 +17,11 @@ export class ProdutosController {
 	}
 
 	@Get('produtos/:idEmpresa/:idProduct')
-	findProductbyId(@Param() productId: any, idEmpresa: any, id:any) {
-		return this.ProdutosService.getProductsbyId(productId, id).catch((e:any) => {
+	findProductbyId(@Param() productId: any, idEmpresa: any, id: any) {
+		return this.ProdutosService.getProductsbyId(productId, id).catch((e: any) => {
 			throw new NotFoundException(e.message);
 		})
-			
-		
+
+
 	}
 }
