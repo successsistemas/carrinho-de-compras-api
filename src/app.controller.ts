@@ -51,13 +51,13 @@ export class AppController {
     return this.authService.nomeUser(data);
 
   }
-  @Post('verificarconta')
+  @Post('auth/verificarconta')
   verificarconta(@Body() body: any) {
     return this.authService.verificarConta(body);
   }
 
 
-  @Post('redefinirsenha')
+  @Post('auth/redefinirsenha')
   async RedefinirSenha(@Body() data: any, url: any, empresa: any, fornecedor: any) {
     const db = this.DatabaseService.getConnection();
     const [rows] = await db.raw(`select id FROM usuario WHERE email = '${data.emailrecuperacao}'`);

@@ -16,7 +16,7 @@ export class AuthService {
   async login(body: LoginDto): Promise<any> {
     const senha = body.senha
     return senha
-      // Retorna a senha que o usuário digitou para ser usada na variável cifra que irá criptografar essa senha futuramente
+    // Retorna a senha que o usuário digitou para ser usada na variável cifra que irá criptografar essa senha futuramente
 
   }
 
@@ -30,7 +30,7 @@ export class AuthService {
     const db = this.DatabaseService.getConnection();
     const [rows] = await db.raw(`select email, senha from usuario where email ='${body.email}' and senha = '${encode}'`);
     if (rows.length > 0) {
-      
+
       // Se existir um campo correspondente com o email e senha digitados pelo usuario ele irá gerar um bearer token para o usuário efetuar o login 
 
       return {
