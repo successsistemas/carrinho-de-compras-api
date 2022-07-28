@@ -105,6 +105,9 @@ export class AuthService {
       // Caso esse email seja de uma conta registrada pela api do Google ele retorna uma mensagem de erro e não permite o envio do email
       throw new UnauthorizedException("Não será possível alterar a senha desse email");
     }
+    else {
+      return body
+    }
   }
 
   async alterarSenha(data: any) {
