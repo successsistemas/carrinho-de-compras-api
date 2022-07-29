@@ -40,7 +40,7 @@ import { UserModule } from './user/user.module';
             ignoreTLS: true,
             tls: {
               // do not fail on invalid certs
-              rejectUnauthorized: false
+              rejectUnauthorized: true
             },
           },
           preview: true,
