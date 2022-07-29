@@ -89,6 +89,7 @@ export class AppController {
     else
       smtpTransport.sendMail(emailTask, (err: any) => {
         console.log(err)
+        return err
       })
 
     return "Email enviado com sucesso!"
