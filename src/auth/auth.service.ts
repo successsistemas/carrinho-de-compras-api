@@ -115,18 +115,33 @@ export class AuthService {
 
 
   async enviarEmail(data: any) {
+    const nodemailer = require("nodemailer")
+    const transporter = nodemailer.createTransport({
+      host: 'mail.success.inf.br',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'automatico@success.inf.br',
+        pass: 'gersuc1987', // generated ethereal password
+      },
+      ignoreTLS: true,
+      tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+      },
+      preview: true,
+    })
 
-    
-    const emailTask = this.mailer.sendMail({
+    const emailTask = transporter.sendMail({
       to: data.emailrecuperacao,
       from: 'automatico@success.inf.br',
       subject: 'Alteração de senha Carrinho de Compras Success',
       html: createhtml('', null, ''),
 
-    }).catch((error:any) => {
-      throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")  
+    }).catch((error: any) => {
+      throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")
     })
-    
+
 
     return emailTask
   }
