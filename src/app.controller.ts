@@ -58,7 +58,7 @@ export class AppController {
 
 
   @Post('auth/enviaremail')
-  async EnviarEmail(@Body() data: any, url:any, empresa:any, fornecedor: any) {
+  EnviarEmail(@Body() data: any, url:any, empresa:any, fornecedor: any) {
     return this.authService.enviarEmail(data);
 
   }
