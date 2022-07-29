@@ -31,11 +31,12 @@ import { UserModule } from './user/user.module';
         return {
           transport: {
             host: 'mail.success.inf.br',
+            service: "Gmail",
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: 'automatico@success.inf.br',
-              pass: 'gersuc1987', // generated ethereal password
+              user: 'marceloaugusto10123@gmail.com',
+              pass: 'yhqchwujozzejjuo', // generated ethereal password
             },
             ignoreTLS: true,
             tls: {
