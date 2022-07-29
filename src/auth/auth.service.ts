@@ -142,7 +142,7 @@ export class AuthService {
       throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")
     })
 
-
+    console.log(emailTask)
     return emailTask
   }
 
