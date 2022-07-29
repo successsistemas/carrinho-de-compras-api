@@ -30,7 +30,7 @@ import { UserModule } from './user/user.module';
       useFactory: async () => {
         return {
           transport: {
-            host: 'mail.success.inf.br',
+            host: 'https://mail.success.inf.br',
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
