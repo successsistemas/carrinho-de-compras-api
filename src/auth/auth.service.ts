@@ -120,21 +120,10 @@ export class AuthService {
       from: 'automatico@success.inf.br',
       subject: 'Alteração de senha Carrinho de Compras Success',
       html: createhtml('', null, ''),
-      
-    })
-    return emailTask
-  }
 
-  async sendEmailTo(email: string, url: string, empresa: any, fornecedor: string) {
-    const emailTask = await this.mailer.sendMail({
-      to: email,
-      from: 'automatico@success.inf.br',
-      subject: 'Código de acesso do Portal Cotações Success',
-      html: createhtml(url, empresa, fornecedor),
-      text: `
-      Para acessar o Portal Cotações, digite o código abaixo no campo onde foi solicitado:
-      teste2
-      Por questões de segurança esse código expira após 10 minutos.`,
+    }).catch((error:any) => {
+      console.log(error)
+      return error
     })
     return emailTask
   }
