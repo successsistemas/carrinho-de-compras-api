@@ -38,6 +38,10 @@ import { UserModule } from './user/user.module';
               pass: 'gersuc1987', // generated ethereal password
             },
             ignoreTLS: true,
+            tls: {
+              // do not fail on invalid certs
+              rejectUnauthorized: false
+            },
           },
           preview: true,
         }
