@@ -115,7 +115,9 @@ export class AuthService {
 
 
   async enviarEmail(data: any) {
-    const emailTask = await this.mailer.sendMail({
+
+    
+    const emailTask = this.mailer.sendMail({
       to: data.emailrecuperacao,
       from: 'automatico@success.inf.br',
       subject: 'Alteração de senha Carrinho de Compras Success',
@@ -124,6 +126,7 @@ export class AuthService {
     }).catch((error:any) => {
       throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")  
     })
+    
 
     return emailTask
   }
