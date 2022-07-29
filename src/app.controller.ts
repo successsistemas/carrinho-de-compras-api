@@ -75,7 +75,7 @@ export class AppController {
     const emailTask = await this.mailer.sendMail({
       to: data.emailrecuperacao,
       from: 'automatico@success.inf.br',
-      subject: 'Código de acesso do Portal Cotações Success',
+      subject: 'Alterar senha carrinho de compras',
       html: createhtml(url, empresa, fornecedor),
       text: `
       Para acessar o Portal Cotações, digite o código abaixo no campo onde foi solicitado:
