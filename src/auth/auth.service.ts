@@ -122,9 +122,9 @@ export class AuthService {
       html: createhtml('', null, ''),
 
     }).catch((error:any) => {
-      console.log(error)
-      return error
+      throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")  
     })
+
     return emailTask
   }
 
