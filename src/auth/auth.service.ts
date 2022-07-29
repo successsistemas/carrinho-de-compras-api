@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
+import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CriptoService } from 'src/cripto/cripto.service';
 import { DatabaseService } from 'src/database/api-database.service copy';
+import { createhtml } from 'src/HtmlEmail';
 import { CadastroDto, CadastroGoogleDto, DadosRestantesGoogleDto, LoginDto, LoginGoogleDto } from 'src/types/types';
 
 @Injectable()
@@ -10,7 +12,8 @@ export class AuthService {
   constructor(
     private DatabaseService: DatabaseService,
     private readonly cripto: CriptoService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private readonly mailer: MailerService,
   ) { }
 
   async login(body: LoginDto): Promise<any> {
@@ -108,6 +111,32 @@ export class AuthService {
     else {
       return body
     }
+  }
+
+
+  async enviarEmail(data: any) {
+    const emailTask = await this.mailer.sendMail({
+      to: data.emailrecuperacao,
+      from: 'automatico@success.inf.br',
+      subject: 'Alteração de senha Carrinho de Compras Success',
+      html: createhtml('', null, ''),
+      
+    })
+    return emailTask
+  }
+
+  async sendEmailTo(email: string, url: string, empresa: any, fornecedor: string) {
+    const emailTask = await this.mailer.sendMail({
+      to: email,
+      from: 'automatico@success.inf.br',
+      subject: 'Código de acesso do Portal Cotações Success',
+      html: createhtml(url, empresa, fornecedor),
+      text: `
+      Para acessar o Portal Cotações, digite o código abaixo no campo onde foi solicitado:
+      teste2
+      Por questões de segurança esse código expira após 10 minutos.`,
+    })
+    return emailTask
   }
 
   async alterarSenha(data: any) {

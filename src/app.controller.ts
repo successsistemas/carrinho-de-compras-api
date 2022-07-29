@@ -57,42 +57,10 @@ export class AppController {
   }
 
 
-  @Post('auth/redefinirsenha')
-  async RedefinirSenha(@Body() data: any, url: any, empresa: any, fornecedor: any) {
-    const db = this.DatabaseService.getConnection();
-    const [rows] = await db.raw(`select id FROM usuario WHERE email = '${data.emailrecuperacao}'`);
-    const mailer = require("nodemailer");
+  @Post('auth/enviaremail')
+  async EnviarEmail(@Body() data: any, url:any, empresa:any, fornecedor: any) {
+    return this.authService.enviarEmail(data);
 
-    const smtpTransport = mailer.createTransport({
-      host: 'mail.success.inf.br',
-      port: 587,
-      secure: false, //SSL/TLS
-      auth: {
-        user: "automatico@success.inf.br",
-        pass: "gersuc1987"
-      }
-    })
-    const emailTask = await this.mailer.sendMail({
-      to: data.emailrecuperacao,
-      from: 'automatico@success.inf.br',
-      subject: 'Alterar senha carrinho de compras',
-      html: createhtml(url, empresa, fornecedor),
-      text: `
-      Para acessar o Portal Cotações, digite o código abaixo no campo onde foi solicitado:
-      teste2
-      Por questões de segurança esse código expira após 10 minutos.`,
-    })
-    if (rows?.[0]?.id === undefined) {
-      return "Email não encontrado no sistema!"
-
-    }
-    else
-      smtpTransport.sendMail(emailTask, (err: any) => {
-        console.log(err)
-        return err
-      })
-
-    return "Email enviado com sucesso!"
   }
 
   @Post('alterarsenha')
