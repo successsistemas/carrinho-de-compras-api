@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { MailerService } from '@nestjs-modules/mailer';
-import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
 import { DatabaseService } from './database/api-database.service copy';
@@ -53,6 +53,7 @@ export class AppController {
   }
   @Post('auth/verificarconta')
   verificarconta(@Body() body: any) {
+
     return this.authService.verificarConta(body);
   }
 

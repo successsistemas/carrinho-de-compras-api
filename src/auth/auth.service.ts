@@ -108,26 +108,25 @@ export class AuthService {
       // Caso esse email seja de uma conta registrada pela api do Google ele retorna uma mensagem de erro e não permite o envio do email
       throw new UnauthorizedException("Não será possível alterar a senha desse email");
     }
-    else {
-      return body
-    }
+    else
+
+      return { body, access_token: this.jwtService.sign({}) }
+
   }
 
 
   async enviarEmail(data: any) {
-    
     const emailTask = await this.mailer.sendMail({
       to: data.emailrecuperacao,
       from: 'automatico@success.inf.br',
       subject: 'Alteração de senha Carrinho de Compras Success',
-      html: createhtml('', null, ''),
+      html: createhtml(data.access_token, null, data.access_token),
 
-    }).catch((error:any) => {
+    }).catch((error: any) => {
       console.log(error)
-      throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")  
+      throw new UnauthorizedException("Não é possível enviar o link para um email incompleto")
     })
-    
-    
+
     return emailTask
   }
 
